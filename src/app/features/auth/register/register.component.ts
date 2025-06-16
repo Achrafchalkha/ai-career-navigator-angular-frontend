@@ -1,108 +1,272 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
-import { ToastrService } from 'ngx-toastr';
+import { Component } from "@angular/core"
+import { CommonModule } from "@angular/common"
+import { FormBuilder, type FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
+import { Router, RouterModule } from "@angular/router"
+
+// Mock auth service interface
+interface AuthService {
+  register(credentials: any): Promise<void>
+}
+
+// Mock auth service implementation
+const mockAuthService: AuthService = {
+  register: async (credentials: {
+    firstName: string
+    lastName: string
+    email: string
+    password: string
+  }): Promise<void> => {
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    // Mock validation - replace with actual auth logic
+    if (credentials.email && credentials.password && credentials.firstName && credentials.lastName) {
+      return Promise.resolve()
+    } else {
+      throw new Error("Registration failed")
+    }
+  },
+}
+
+// Simple toast service
+class ToastService {
+  success(message: string) {
+    this.showToast(message, "success")
+  }
+
+  error(message: string) {
+    this.showToast(message, "error")
+  }
+
+  private showToast(message: string, type: "success" | "error") {
+    const toast = document.createElement("div")
+    toast.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 ${
+      type === "success" ? "bg-green-500" : "bg-red-500"
+    }`
+    toast.textContent = message
+    document.body.appendChild(toast)
+
+    setTimeout(() => {
+      toast.style.opacity = "0"
+      setTimeout(() => document.body.removeChild(toast), 300)
+    }, 3000)
+  }
+}
 
 @Component({
-  selector: 'app-register',
+  selector: "app-register",
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   template: `
-    <div class="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
-        <h2 class="text-3xl font-bold text-center mb-8">Register</h2>
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-700">First Name</label>
-              <input
-                type="text"
-                formControlName="firstName"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                placeholder="Enter first name"
-              />
+    <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/50 to-purple-50/50 flex items-center justify-center p-4">
+      <div class="max-w-md w-full bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/50 p-8 relative overflow-hidden">
+        
+        <!-- Background gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-indigo-500/5 rounded-2xl"></div>
+        
+        <!-- Content -->
+        <div class="relative z-10">
+          <!-- Header with brand -->
+          <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl mb-4 shadow-lg">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+              </svg>
             </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700">Last Name</label>
-              <input
-                type="text"
-                formControlName="lastName"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                placeholder="Enter last name"
-              />
+            <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+              Create Account
+            </h2>
+            <p class="text-gray-600">Join AI Career Navigator and start your journey</p>
+          </div>
+
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
+            <!-- Name Fields -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">First Name</label>
+                <input
+                  type="text"
+                  formControlName="firstName"
+                  class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white/80 backdrop-blur-sm transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white hover:border-blue-300 outline-none"
+                  placeholder="First name"
+                />
+                <div *ngIf="registerForm.get('firstName')?.invalid && (registerForm.get('firstName')?.dirty || registerForm.get('firstName')?.touched)" class="mt-2 text-sm text-red-600">
+                  <span *ngIf="registerForm.get('firstName')?.errors?.['required']">First name is required</span>
+                  <span *ngIf="registerForm.get('firstName')?.errors?.['minlength']">First name must be at least 2 characters</span>
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Last Name</label>
+                <input
+                  type="text"
+                  formControlName="lastName"
+                  class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white/80 backdrop-blur-sm transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white hover:border-blue-300 outline-none"
+                  placeholder="Last name"
+                />
+                <div *ngIf="registerForm.get('lastName')?.invalid && (registerForm.get('lastName')?.dirty || registerForm.get('lastName')?.touched)" class="mt-2 text-sm text-red-600">
+                  <span *ngIf="registerForm.get('lastName')?.errors?.['required']">Last name is required</span>
+                  <span *ngIf="registerForm.get('lastName')?.errors?.['minlength']">Last name must be at least 2 characters</span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Email</label>
-            <input
-              type="email"
-              formControlName="email"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              placeholder="Enter your email"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Password</label>
-            <input
-              type="password"
-              formControlName="password"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              placeholder="Enter your password"
-            />
-          </div>
-          <button
-            type="submit"
-            [disabled]="registerForm.invalid || isLoading"
-            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            {{ isLoading ? 'Loading...' : 'Register' }}
-          </button>
-          <p class="text-center text-sm text-gray-600">
-            Already have an account?
-            <a routerLink="/ai-career-navigator/login" class="font-medium text-indigo-600 hover:text-indigo-500">
-              Login here
-            </a>
-          </p>
-        </form>
+
+            <!-- Email Field -->
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+              <input
+                type="email"
+                formControlName="email"
+                class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white/80 backdrop-blur-sm transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white hover:border-blue-300 outline-none"
+                placeholder="Enter your email address"
+              />
+              <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)" class="mt-2 text-sm text-red-600">
+                <span *ngIf="registerForm.get('email')?.errors?.['required']">Email is required</span>
+                <span *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid email address</span>
+              </div>
+            </div>
+
+            <!-- Password Field -->
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+              <input
+                type="password"
+                formControlName="password"
+                class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white/80 backdrop-blur-sm transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white hover:border-blue-300 outline-none"
+                placeholder="Create a strong password"
+              />
+              <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)" class="mt-2 text-sm text-red-600">
+                <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required</span>
+                <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long</span>
+              </div>
+              <!-- Password requirements -->
+              <div class="mt-2 text-xs text-gray-500">
+                Password must be at least 8 characters long
+              </div>
+            </div>
+
+            <!-- Terms and Conditions -->
+            <div class="flex items-start space-x-3">
+              <input
+                type="checkbox"
+                formControlName="agreeToTerms"
+                class="mt-1 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+              />
+              <label class="text-sm text-gray-600">
+                I agree to the 
+                <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">Terms of Service</a> 
+                and 
+                <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">Privacy Policy</a>
+              </label>
+            </div>
+            <div *ngIf="registerForm.get('agreeToTerms')?.invalid && (registerForm.get('agreeToTerms')?.dirty || registerForm.get('agreeToTerms')?.touched)" class="text-sm text-red-600">
+              You must agree to the terms and conditions
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              [disabled]="registerForm.invalid || isLoading"
+              class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none focus:outline-none focus:ring-4 focus:ring-blue-500/20"
+            >
+              <span *ngIf="isLoading" class="flex items-center justify-center">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Creating Account...
+              </span>
+              <span *ngIf="!isLoading">Create Account</span>
+            </button>
+
+            <!-- Divider -->
+            <div class="relative my-6">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-200"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-4 bg-white text-gray-500 font-medium">Already have an account?</span>
+              </div>
+            </div>
+
+            <!-- Login Link -->
+            <div class="text-center">
+              <p class="text-gray-600 mb-3">Welcome back!</p>
+              <a 
+                routerLink="/ai-career-navigator/login" 
+                class="inline-flex items-center justify-center w-full py-3 px-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-blue-500 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/20"
+              >
+                Sign In to Your Account
+              </a>
+            </div>
+          </form>
+        </div>
+
+        <!-- Decorative elements -->
+        <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-2xl"></div>
+        <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-r from-purple-400/20 to-indigo-400/20 rounded-full blur-2xl"></div>
       </div>
     </div>
-  `
+  `,
+  styles: [
+    `
+    /* Custom backdrop blur */
+    .backdrop-blur-xl {
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    /* Gradient text fallback */
+    .bg-clip-text {
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    /* Smooth transitions */
+    * {
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  `,
+  ],
 })
 export class RegisterComponent {
-  registerForm: FormGroup;
-  isLoading = false;
+  registerForm: FormGroup
+  isLoading = false
+  private authService = mockAuthService
+  private toastr = new ToastService()
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
     private router: Router,
-    private toastr: ToastrService
   ) {
     this.registerForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
-    });
+      firstName: ["", [Validators.required, Validators.minLength(2)]],
+      lastName: ["", [Validators.required, Validators.minLength(2)]],
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.minLength(8)]],
+      agreeToTerms: [false, [Validators.requiredTrue]],
+    })
   }
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      this.isLoading = true;
-      this.authService.register(this.registerForm.value).subscribe({
-        next: () => {
-          this.toastr.success('Registration successful');
-          this.router.navigate(['/ai-career-navigator/dashboard']);
-        },
-        error: (error) => {
-          console.error('Registration error:', error);
-          const errorMessage = error.error?.error || error.message || 'Registration failed';
-          this.toastr.error(errorMessage);
-          this.isLoading = false;
-        }
-      });
+      this.isLoading = true
+
+      this.authService
+        .register(this.registerForm.value)
+        .then(() => {
+          this.toastr.success("Registration successful")
+          this.router.navigate(["/ai-career-navigator/dashboard"])
+        })
+        .catch((error) => {
+          console.error("Registration error:", error)
+          const errorMessage = error.error?.error || error.message || "Registration failed"
+          this.toastr.error(errorMessage)
+          this.isLoading = false
+        })
+    } else {
+      // Mark all fields as touched to show validation errors
+      this.registerForm.markAllAsTouched()
     }
   }
 }
