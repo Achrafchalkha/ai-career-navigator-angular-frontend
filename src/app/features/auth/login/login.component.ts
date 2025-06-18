@@ -3,31 +3,7 @@ import { CommonModule } from "@angular/common"
 import { FormBuilder, type FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
 import { Router, RouterModule } from "@angular/router"
 import { AuthService } from "../../../core/services/auth.service"
-
-// Simple toast service
-class ToastService {
-  success(message: string) {
-    this.showToast(message, "success")
-  }
-
-  error(message: string) {
-    this.showToast(message, "error")
-  }
-
-  private showToast(message: string, type: "success" | "error") {
-    const toast = document.createElement("div")
-    toast.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 ${
-      type === "success" ? "bg-green-500" : "bg-red-500"
-    }`
-    toast.textContent = message
-    document.body.appendChild(toast)
-
-    setTimeout(() => {
-      toast.style.opacity = "0"
-      setTimeout(() => document.body.removeChild(toast), 300)
-    }, 3000)
-  }
-}
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: "app-login",
@@ -163,12 +139,12 @@ class ToastService {
 export class LoginComponent {
   loginForm: FormGroup
   isLoading = false
-  private toastr = new ToastService()
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
+    private toastr: ToastrService,
   ) {
     this.loginForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
@@ -183,7 +159,7 @@ export class LoginComponent {
       this.authService
         .login(this.loginForm.value)
         .subscribe({
-          next: (response) => {
+          next: () => {
             this.toastr.success("Login successful")
             this.router.navigate(["/ai-career-navigator/dashboard"])
           },

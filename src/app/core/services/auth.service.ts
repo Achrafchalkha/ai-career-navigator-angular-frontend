@@ -43,7 +43,11 @@ export class AuthService {
     if (token && this.isTokenValid(token)) {
       this.isAuthenticatedSubject.next(true);
     } else {
-      this.logout();
+      // Clean up invalid tokens without navigation
+      localStorage.removeItem(this.USER_KEY);
+      localStorage.removeItem(this.TOKEN_KEY);
+      this.currentUserSubject.next(null);
+      this.isAuthenticatedSubject.next(false);
     }
   }
 
@@ -74,13 +78,21 @@ export class AuthService {
   }
 
   logout(): void {
+    console.log('🔓 Logout started');
+
+    // Clear storage first
     localStorage.removeItem(this.USER_KEY);
     localStorage.removeItem(this.TOKEN_KEY);
+    console.log('✅ Storage cleared');
 
+    // Update auth state
     this.currentUserSubject.next(null);
     this.isAuthenticatedSubject.next(false);
+    console.log('✅ Auth state updated');
 
-    this.router.navigate(['/ai-career-navigator/login']);
+    // Force page reload to landing page to avoid any routing conflicts
+    console.log('🚀 Redirecting to landing page...');
+    window.location.replace('/ai-career-navigator');
   }
 
   getToken(): string | null {

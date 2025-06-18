@@ -2,56 +2,8 @@ import { Component } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { FormBuilder, type FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
 import { Router, RouterModule } from "@angular/router"
-
-// Mock auth service interface
-interface AuthService {
-  register(credentials: any): Promise<void>
-}
-
-// Mock auth service implementation
-const mockAuthService: AuthService = {
-  register: async (credentials: {
-    firstName: string
-    lastName: string
-    email: string
-    password: string
-  }): Promise<void> => {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    // Mock validation - replace with actual auth logic
-    if (credentials.email && credentials.password && credentials.firstName && credentials.lastName) {
-      return Promise.resolve()
-    } else {
-      throw new Error("Registration failed")
-    }
-  },
-}
-
-// Simple toast service
-class ToastService {
-  success(message: string) {
-    this.showToast(message, "success")
-  }
-
-  error(message: string) {
-    this.showToast(message, "error")
-  }
-
-  private showToast(message: string, type: "success" | "error") {
-    const toast = document.createElement("div")
-    toast.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 ${
-      type === "success" ? "bg-green-500" : "bg-red-500"
-    }`
-    toast.textContent = message
-    document.body.appendChild(toast)
-
-    setTimeout(() => {
-      toast.style.opacity = "0"
-      setTimeout(() => document.body.removeChild(toast), 300)
-    }, 3000)
-  }
-}
+import { AuthService } from "../../../core/services/auth.service"
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: "app-register",
@@ -232,12 +184,12 @@ class ToastService {
 export class RegisterComponent {
   registerForm: FormGroup
   isLoading = false
-  private authService = mockAuthService
-  private toastr = new ToastService()
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private authService: AuthService,
+    private toastr: ToastrService,
   ) {
     this.registerForm = this.fb.group({
       firstName: ["", [Validators.required, Validators.minLength(2)]],
@@ -252,18 +204,18 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this.isLoading = true
 
-      this.authService
-        .register(this.registerForm.value)
-        .then(() => {
+      this.authService.register(this.registerForm.value).subscribe({
+        next: () => {
           this.toastr.success("Registration successful")
           this.router.navigate(["/ai-career-navigator/dashboard"])
-        })
-        .catch((error) => {
+        },
+        error: (error) => {
           console.error("Registration error:", error)
-          const errorMessage = error.error?.error || error.message || "Registration failed"
+          const errorMessage = error.message || "Registration failed"
           this.toastr.error(errorMessage)
           this.isLoading = false
-        })
+        }
+      })
     } else {
       // Mark all fields as touched to show validation errors
       this.registerForm.markAllAsTouched()

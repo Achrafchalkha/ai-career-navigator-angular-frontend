@@ -28,12 +28,7 @@ import { environment } from "../../../environments/environment"
         <div class="flex justify-between h-20">
           <div class="flex items-center space-x-8">
             <!-- Logo with Animation -->
-            <div class="flex items-center space-x-3 group">
-              <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-all duration-300">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                </svg>
-              </div>
+            <div class="flex items-center group">
               <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 AI Career Navigator
               </h1>
@@ -175,9 +170,11 @@ import { environment } from "../../../environments/environment"
                   Guidance Hub
                 </span>
               </h1>
-              <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed animate-slide-up-delayed">
-                Get personalized career recommendations, learning roadmaps, and market insights powered by AI
-              </p>
+              <div class="w-full flex justify-center">
+                <p class="text-xl md:text-2xl text-gray-600 max-w-4xl leading-relaxed text-center animate-slide-up-delayed">
+                  Get personalized career recommendations, learning roadmaps, and market insights powered by AI
+                </p>
+              </div>
             </div>
           </div>
 
@@ -696,9 +693,11 @@ import { environment } from "../../../environments/environment"
                 History
               </span>
             </h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-slide-up-delayed">
-              View and manage all your previous career guidance sessions
-            </p>
+            <div class="w-full flex justify-center">
+              <p class="text-xl text-gray-600 max-w-3xl text-center animate-slide-up-delayed">
+                View and manage all your previous career guidance sessions
+              </p>
+            </div>
           </div>
 
           <!-- History Stats -->
@@ -885,9 +884,11 @@ import { environment } from "../../../environments/environment"
                 Statistics
               </span>
             </h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-slide-up-delayed">
-              Insights and analytics about your career guidance journey
-            </p>
+            <div class="flex justify-center">
+              <p class="text-xl text-gray-600 max-w-3xl text-center animate-slide-up-delayed">
+                Insights and analytics about your career guidance journey
+              </p>
+            </div>
           </div>
 
           <!-- Loading State -->
@@ -1013,9 +1014,101 @@ import { environment } from "../../../environments/environment"
         </div>
       </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white py-20 relative overflow-hidden">
+      <!-- Background Effects -->
+      <div class="absolute inset-0">
+        <div class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-blue-600/5 to-purple-600/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-purple-600/5 to-pink-600/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <!-- Brand Section -->
+          <div class="md:col-span-2">
+            <div class="flex items-center space-x-4 mb-8">
+              <h3 class="text-3xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                AI Career Navigator
+              </h3>
+            </div>
+            <p class="text-gray-300 leading-relaxed mb-8 max-w-md text-lg">
+              Empowering professionals worldwide with AI-driven career guidance, personalized learning paths, and
+              industry insights to unlock their full potential.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="group w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-gray-700 transition-all duration-300 hover:scale-110">
+                <svg class="w-6 h-6 group-hover:text-blue-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                </svg>
+              </a>
+              <a href="#" class="group w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-gray-700 transition-all duration-300 hover:scale-110">
+                <svg class="w-6 h-6 group-hover:text-blue-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
+              <a href="#" class="group w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-gray-700 transition-all duration-300 hover:scale-110">
+                <svg class="w-6 h-6 group-hover:text-blue-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="text-xl font-bold text-white mb-6">Platform</h4>
+            <ul class="space-y-4">
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform inline-block">Career Assessment</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform inline-block">Learning Paths</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform inline-block">Industry Insights</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform inline-block">Success Stories</a></li>
+            </ul>
+          </div>
+
+          <!-- Support -->
+          <div>
+            <h4 class="text-xl font-bold text-white mb-6">Support</h4>
+            <ul class="space-y-4">
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform inline-block">Help Center</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform inline-block">Contact Us</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform inline-block">Privacy Policy</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform inline-block">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="pt-12 border-t border-gray-800">
+          <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+            <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-8">
+              <p class="text-gray-400 text-base">© 2025 AI Career Navigator. All rights reserved.</p>
+              <div class="hidden md:flex items-center space-x-2 text-gray-500 text-sm">
+                <span>•</span>
+                <span>Trusted by 50,000+ professionals worldwide</span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-400">
+              <span>Made with</span>
+              <span class="heart-animation text-red-400 text-xl">❤️</span>
+              <span>by</span>
+              <a href="#" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300 hover:scale-105 transform inline-block">
+                Achraf Chalkha
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   `,
   styles: [
     `
+    /* Heart animation for footer */
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    .heart-animation { animation: heartbeat 1.5s ease-in-out infinite; }
     /* Custom Animations */
     @keyframes float {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -1178,7 +1271,8 @@ export class DashboardComponent implements OnInit {
 
     this.currentUser$.subscribe((user) => {
       if (!user) {
-        this.router.navigate(["/login"])
+        // Don't redirect here - let the AuthService handle logout navigation
+        console.log('Dashboard: User is null, but not redirecting (AuthService will handle it)')
       } else {
         this.currentUser = user
       }
@@ -1388,10 +1482,18 @@ export class DashboardComponent implements OnInit {
         Authorization: `Bearer ${token}`,
       })
 
-      const response = await this.http.get<any>(`${environment.apiUrl}/career/stats`, { headers }).toPromise()
+      // Load both stats and full history for Usage Insights
+      const [statsResponse, historyResponse] = await Promise.all([
+        this.http.get<any>(`${environment.apiUrl}/career/stats`, { headers }).toPromise(),
+        this.http.get<any>(`${environment.apiUrl}/career/history`, { headers }).toPromise()
+      ])
 
-      if (response && response.status === "success") {
-        this.userStats = response.stats
+      if (statsResponse && statsResponse.status === "success") {
+        this.userStats = statsResponse.stats
+      }
+
+      if (historyResponse && historyResponse.status === "success") {
+        this.fullGuidanceHistory = historyResponse.history || []
       }
     } catch (error) {
       console.error("Failed to load user stats:", error)
@@ -1402,45 +1504,50 @@ export class DashboardComponent implements OnInit {
   }
 
   getSuccessfulSessions(): number {
-    return this.fullGuidanceHistory.filter((session) => session.status === "success").length
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 0
+    return this.fullGuidanceHistory.filter((session) => session.status === "success" || session.status === "completed").length
   }
 
   getLatestSessionDate(): string {
-    if (this.fullGuidanceHistory.length === 0) return "Never"
-    return this.formatDate(this.fullGuidanceHistory[0].createdAt)
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return "Never"
+    return this.formatDate(this.fullGuidanceHistory[0].createdAt || this.fullGuidanceHistory[0].created_at)
   }
 
   getSuccessRate(): number {
-    if (this.fullGuidanceHistory.length === 0) return 0
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 0
     const successful = this.getSuccessfulSessions()
     return Math.round((successful / this.fullGuidanceHistory.length) * 100)
   }
 
   getThisMonthSessions(): number {
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 0
+
     const now = new Date()
     const thisMonth = now.getMonth()
     const thisYear = now.getFullYear()
 
     return this.fullGuidanceHistory.filter((session) => {
-      const sessionDate = new Date(session.createdAt)
+      const sessionDate = new Date(session.createdAt || session.created_at)
       return sessionDate.getMonth() === thisMonth && sessionDate.getFullYear() === thisYear
     }).length
   }
 
   getThisWeekSessions(): number {
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 0
+
     const now = new Date()
     const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)
 
     return this.fullGuidanceHistory.filter((session) => {
-      const sessionDate = new Date(session.createdAt)
+      const sessionDate = new Date(session.createdAt || session.created_at)
       return sessionDate >= oneWeekAgo
     }).length
   }
 
   getAverageSessionsPerMonth(): number {
-    if (this.fullGuidanceHistory.length === 0) return 0
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 0
 
-    const oldestSession = new Date(this.fullGuidanceHistory[this.fullGuidanceHistory.length - 1].createdAt)
+    const oldestSession = new Date(this.fullGuidanceHistory[this.fullGuidanceHistory.length - 1].createdAt || this.fullGuidanceHistory[this.fullGuidanceHistory.length - 1].created_at)
     const now = new Date()
     const monthsDiff =
       (now.getFullYear() - oldestSession.getFullYear()) * 12 + (now.getMonth() - oldestSession.getMonth()) + 1
@@ -1449,19 +1556,25 @@ export class DashboardComponent implements OnInit {
   }
 
   getPopularFields(): { name: string; count: number }[] {
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) {
+      return [{ name: 'No data available', count: 0 }]
+    }
+
     const fieldCounts: { [key: string]: number } = {}
 
     this.fullGuidanceHistory.forEach((session) => {
-      const field = session.userProfile?.desiredField
+      const field = session.userProfile?.desiredField || session.user_profile?.desired_field
       if (field) {
         fieldCounts[field] = (fieldCounts[field] || 0) + 1
       }
     })
 
-    return Object.entries(fieldCounts)
+    const result = Object.entries(fieldCounts)
       .map(([name, count]) => ({ name, count }))
       .sort((a, b) => b.count - a.count)
       .slice(0, 5)
+
+    return result.length > 0 ? result : [{ name: 'No fields tracked yet', count: 0 }]
   }
 
   // Helper methods for styling
@@ -1496,6 +1609,5 @@ export class DashboardComponent implements OnInit {
   logout(): void {
     this.authService.logout()
     this.toastr.success("Logged out successfully")
-    this.router.navigate(["/ai-career-navigator/login"])
   }
 }

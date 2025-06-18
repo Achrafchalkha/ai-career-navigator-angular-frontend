@@ -14,7 +14,6 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401) {
         authService.logout();
-        router.navigate(['/login']);
         toastr.error('Session expired. Please login again.');
       } else {
         toastr.error(error.error?.message || 'An error occurred');

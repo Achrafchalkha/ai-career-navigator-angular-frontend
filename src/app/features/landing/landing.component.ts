@@ -104,11 +104,11 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-2xl z-50 border-b border-gray-200/30 shadow-xl shadow-blue-500/10" [@slideInLeft]>
       <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-        <div class="flex justify-between items-center h-24">
-          
+        <div class="flex justify-between items-center h-16">
+
           <!-- Navbar Brand -->
           <div class="flex items-center group">
-            <h1 class="text-3xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-105 transition-all duration-500 relative">
+            <h1 class="text-lg font-black bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-105 transition-all duration-500 relative py-2">
               AI Career Navigator
               <div class="absolute -inset-2 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
             </h1>
@@ -132,11 +132,11 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
             </div>
             <div class="flex items-center space-x-4">
               <a routerLink="/ai-career-navigator/login"
-                 class="text-gray-700 hover:text-blue-600 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 border border-transparent hover:border-blue-200">
+                 class="text-gray-700 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 border border-transparent hover:border-blue-200">
                 Sign In
               </a>
               <a routerLink="/ai-career-navigator/register"
-                 class="group relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-8 py-3 rounded-xl text-sm font-semibold overflow-hidden transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25">
+                 class="group relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg text-sm font-semibold overflow-hidden transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25">
                 <span class="relative z-10 flex items-center">
                   Get Started
                   <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,11 +172,11 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
             <a href="#testimonials" class="block text-gray-700 hover:text-blue-600 py-3 text-base font-medium transition-colors duration-300">Testimonials</a>
             <div class="pt-4 border-t border-gray-200 space-y-3">
               <a routerLink="/ai-career-navigator/login"
-                 class="block text-center text-gray-700 hover:text-blue-600 py-3 text-base font-medium transition-colors duration-300">
+                 class="block text-center text-gray-700 hover:text-blue-600 py-2 text-base font-medium transition-colors duration-300">
                 Sign In
               </a>
               <a routerLink="/ai-career-navigator/register"
-                 class="block text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105">
+                 class="block text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
                 Get Started
               </a>
             </div>
@@ -223,7 +223,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
       <div class="relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
         <div class="text-center">
           <!-- Enhanced Hero Badge -->
-          <div class="hero-title inline-flex items-center space-x-4 bg-gradient-to-r from-blue-50/90 via-purple-50/90 to-indigo-50/90 backdrop-blur-lg rounded-full px-10 py-5 mb-10 border border-blue-200/60 shadow-xl hover:shadow-2xl transition-all duration-700 group cursor-pointer">
+          <div class="hero-title inline-flex items-center space-x-4 bg-gradient-to-r from-blue-50/90 via-purple-50/90 to-indigo-50/90 backdrop-blur-lg rounded-full px-10 py-5 mb-6 border border-blue-200/60 shadow-xl hover:shadow-2xl transition-all duration-700 group cursor-pointer">
             <div class="relative">
               <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-ping opacity-30"></div>
               <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full animate-pulse opacity-40"></div>
@@ -306,7 +306,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
     </section>
 
     <!-- Features Section -->
-    <section class="py-40 bg-gradient-to-br from-white via-blue-50/40 to-purple-50/40 relative overflow-hidden">
+    <section id="features" class="py-40 bg-gradient-to-br from-white via-blue-50/40 to-purple-50/40 relative overflow-hidden">
       
       <!-- Enhanced Background Elements -->
       <div class="absolute inset-0">
@@ -334,10 +334,12 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
             </span>
             <div class="absolute -inset-4 bg-gradient-to-r from-blue-600/5 via-purple-600/5 to-indigo-600/5 blur-2xl rounded-3xl"></div>
           </h2>
-          <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed text-center">
-            Powered by cutting-edge AI technology to provide personalized career guidance
-            tailored to your unique profile and aspirations.
-          </p>
+          <div class="w-full flex justify-center">
+            <p class="text-xl md:text-2xl text-gray-600 max-w-4xl leading-relaxed text-center">
+              Powered by cutting-edge AI technology to provide personalized career guidance
+              tailored to your unique profile and aspirations.
+            </p>
+          </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12" [@staggerCards]="featuresVisible">
@@ -380,7 +382,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
     </section>
 
     <!-- How It Works Section -->
-    <section class="py-40 bg-gradient-to-br from-slate-50/80 via-blue-50/60 to-purple-50/60 relative overflow-hidden">
+    <section id="how-it-works" class="py-40 bg-gradient-to-br from-slate-50/80 via-blue-50/60 to-purple-50/60 relative overflow-hidden">
       
       <!-- Enhanced Background Elements -->
       <div class="absolute inset-0">
@@ -408,9 +410,11 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
               Works
             </span>
           </h2>
-          <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed text-center">
-            Get personalized career guidance in three simple steps
-          </p>
+          <div class="w-full flex justify-center">
+            <p class="text-xl md:text-2xl text-gray-600 max-w-4xl leading-relaxed text-center">
+              Get personalized career guidance in three simple steps
+            </p>
+          </div>
         </div>
 
         <div class="relative">
@@ -520,9 +524,11 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
               Say About Us
             </span>
           </h2>
-          <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed text-center">
-            Join thousands of professionals who have transformed their careers with AI-powered guidance
-          </p>
+          <div class="w-full flex justify-center">
+            <p class="text-xl md:text-2xl text-gray-600 max-w-4xl leading-relaxed text-center">
+              Join thousands of professionals who have transformed their careers with AI-powered guidance
+            </p>
+          </div>
         </div>
 
         <!-- Scrolling Testimonials Container -->
