@@ -312,29 +312,73 @@ import { environment } from "../../../environments/environment"
             </div>
           </div>
 
-          <!-- Learning Roadmap -->
-          <div class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 relative overflow-hidden transform hover:scale-[1.02] transition-all duration-300 animate-slide-up-delayed">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-indigo-500/5 rounded-3xl"></div>
-            <div class="relative z-10">
-              <h3 class="text-2xl font-bold text-gray-900 mb-8 flex items-center">
-                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                  </svg>
-                </div>
-                Learning Roadmap
-              </h3>
-              <div class="space-y-4">
-                <div *ngFor="let step of (guidanceData.roadmap || []); let i = index"
-                     class="flex items-start p-6 bg-white/80 rounded-2xl shadow-lg border border-purple-200/50 hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-slide-up"
-                     [style.animation-delay]="i * 100 + 'ms'">
-                  <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0 shadow-lg">
+          <!-- Enhanced Learning Roadmap -->
+          <div class="bg-gradient-to-br from-purple-50/80 to-pink-50/80 backdrop-blur-sm rounded-2xl p-8 border border-purple-100/50 transform hover:scale-[1.02] transition-all duration-300">
+            <h3 class="text-2xl font-bold text-gray-900 mb-8 flex items-center">
+              <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                </svg>
+              </div>
+              Learning Roadmap
+              <span class="ml-4 text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded-full font-medium">
+                {{ (guidanceData.roadmap || []).length }} Steps
+              </span>
+            </h3>
+
+            <div class="relative">
+              <!-- Roadmap Timeline -->
+              <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-300 via-pink-300 to-purple-300"></div>
+
+              <div class="space-y-6">
+                <div *ngFor="let step of (guidanceData.roadmap || []); let i = index; let isLast = last"
+                     class="relative flex items-start group animate-slide-up"
+                     [style.animation-delay]="i * 150 + 'ms'">
+
+                  <!-- Step Number Circle -->
+                  <div class="relative z-10 flex-shrink-0 w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
                     <span class="text-white text-lg font-bold">{{ i + 1 }}</span>
+                    <!-- Pulse Animation -->
+                    <div class="absolute inset-0 rounded-full bg-purple-400 animate-ping opacity-20"></div>
                   </div>
-                  <p class="text-gray-800 font-medium text-lg leading-relaxed">{{ step }}</p>
+
+                  <!-- Step Content -->
+                  <div class="ml-6 flex-1 bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-purple-200/50 hover:shadow-lg transition-all duration-300 group-hover:scale-[1.02]">
+                    <div class="flex items-start justify-between mb-3">
+                      <h4 class="text-lg font-bold text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
+                        Step {{ i + 1 }}
+                      </h4>
+                      <!-- Estimated Time -->
+                      <div class="flex items-center space-x-2 text-sm text-gray-500">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>{{ getEstimatedTime(i) }}</span>
+                      </div>
+                    </div>
+
+                    <p class="text-gray-700 leading-relaxed mb-4">{{ step }}</p>
+
+                    <!-- Progress Bar -->
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm text-gray-600">Difficulty</span>
+                      <div class="flex items-center space-x-2">
+                        <div class="flex space-x-1">
+                          <div *ngFor="let star of getDifficultyStars(i); let j = index"
+                               class="w-3 h-3 rounded-full transition-all duration-300"
+                               [ngClass]="{
+                                 'bg-gradient-to-r from-purple-400 to-pink-400': star,
+                                 'bg-gray-200': !star
+                               }"></div>
+                        </div>
+                        <span class="text-sm font-semibold text-purple-600">{{ getDifficultyLevel(i) }}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
                 <div *ngIf="!guidanceData.roadmap?.length"
-                     class="p-8 bg-gray-50/80 rounded-2xl text-center">
+                     class="p-12 bg-gray-50/80 rounded-xl text-center">
                   <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
@@ -931,6 +975,29 @@ export class CareerGuidanceDetailsComponent implements OnInit {
       return "text-blue-600 bg-white/50 shadow-lg"
     }
     return "text-gray-600 hover:text-blue-600 hover:bg-white/50"
+  }
+
+  // Helper methods for roadmap styling (matching dashboard component)
+  getEstimatedTime(index: number): string {
+    const times = ["2-3 weeks", "1-2 months", "3-4 weeks", "2-3 months", "1-2 weeks", "4-6 weeks"]
+    return times[index % times.length]
+  }
+
+  getDifficultyStars(index: number): boolean[] {
+    const difficulties = [
+      [true, false, false, false, false], // Easy
+      [true, true, false, false, false],  // Medium-Easy
+      [true, true, true, false, false],   // Medium
+      [true, true, true, true, false],    // Medium-Hard
+      [true, true, true, true, true],     // Hard
+    ]
+    const difficultyIndex = (index + 1) % 5
+    return difficulties[difficultyIndex]
+  }
+
+  getDifficultyLevel(index: number): string {
+    const levels = ["Easy", "Medium", "Medium", "Hard", "Expert"]
+    return levels[index % levels.length]
   }
 
   logout(): void {
