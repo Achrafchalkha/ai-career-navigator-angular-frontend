@@ -669,8 +669,7 @@ import * as L from 'leaflet'
             </div>
           </div>
         </div>
-
-
+        </div>
 
         <!-- Action Buttons -->
         <div class="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up">
