@@ -337,13 +337,13 @@ import * as L from "leaflet"
             <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-purple-500/5 rounded-3xl"></div>
             
             <div class="relative z-10">
-              <h3 class="text-2xl font-bold text-gray-900 mb-8 flex items-center">
-                <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <h3 class="text-3xl font-extrabold bg-gradient-to-r from-purple-600 via-violet-600 to-purple-700 bg-clip-text text-transparent mb-10 flex items-center">
+                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center mr-5 shadow-lg transform hover:scale-110 transition-all duration-300">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
                   </svg>
                 </div>
-                Learning Roadmap
+                🗺️ Learning Roadmap
                 <span class="ml-4 text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded-full font-medium">
                   {{ (guidanceData?.roadmap || []).length }} Steps
                 </span>
@@ -380,7 +380,7 @@ import * as L from "leaflet"
                         </div>
                       </div>
                       
-                      <p class="text-gray-700 leading-relaxed mb-4 text-base font-medium">{{ step }}</p>
+                      <p class="text-gray-700 leading-relaxed mb-4 text-lg font-semibold">{{ step }}</p>
                       
                       <!-- Progress Bar -->
                       <div class="flex items-center justify-between">
