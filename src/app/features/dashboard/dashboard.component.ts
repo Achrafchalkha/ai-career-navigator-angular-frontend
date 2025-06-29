@@ -1151,37 +1151,255 @@ import * as L from 'leaflet'
               </div>
             </div>
 
-            <!-- Additional Stats -->
+            <!-- Enhanced Usage Insights -->
             <div class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-white/20 animate-slide-up">
-              <h3 class="text-2xl font-bold text-gray-900 mb-8">Usage Insights</h3>
+              <h3 class="text-3xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent mb-10 flex items-center">
+                <div class="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mr-5 shadow-lg">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                  </svg>
+                </div>
+                📊 Usage Insights
+              </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
-                  <h4 class="text-xl font-bold text-gray-800 mb-6">Session Activity</h4>
+                  <h4 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center mr-3">
+                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                      </svg>
+                    </div>
+                    Session Activity
+                  </h4>
                   <div class="space-y-4">
-                    <div class="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 rounded-xl border border-blue-100/50">
+                    <div class="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 rounded-xl border border-blue-100/50 hover:shadow-lg transition-all duration-300">
                       <span class="text-gray-600 font-medium">This Month</span>
                       <span class="font-bold text-lg bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{{ getThisMonthSessions() }}</span>
                     </div>
-                    <div class="flex justify-between items-center p-4 bg-gradient-to-r from-green-50/80 to-emerald-50/80 rounded-xl border border-green-100/50">
+                    <div class="flex justify-between items-center p-4 bg-gradient-to-r from-green-50/80 to-emerald-50/80 rounded-xl border border-green-100/50 hover:shadow-lg transition-all duration-300">
                       <span class="text-gray-600 font-medium">This Week</span>
                       <span class="font-bold text-lg bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{{ getThisWeekSessions() }}</span>
                     </div>
-                    <div class="flex justify-between items-center p-4 bg-gradient-to-r from-purple-50/80 to-pink-50/80 rounded-xl border border-purple-100/50">
+                    <div class="flex justify-between items-center p-4 bg-gradient-to-r from-purple-50/80 to-pink-50/80 rounded-xl border border-purple-100/50 hover:shadow-lg transition-all duration-300">
                       <span class="text-gray-600 font-medium">Average per Month</span>
                       <span class="font-bold text-lg bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{{ getAverageSessionsPerMonth() }}</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-gradient-to-r from-orange-50/80 to-red-50/80 rounded-xl border border-orange-100/50 hover:shadow-lg transition-all duration-300">
+                      <span class="text-gray-600 font-medium">Today</span>
+                      <span class="font-bold text-lg bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">{{ getTodaySessions() }}</span>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 class="text-xl font-bold text-gray-800 mb-6">Popular Fields</h4>
+                  <h4 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                    <div class="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center mr-3">
+                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+                      </svg>
+                    </div>
+                    Popular Career Fields
+                  </h4>
                   <div class="space-y-3">
-                    <div *ngFor="let field of getPopularFields(); let i = index" 
-                         class="flex justify-between items-center p-4 bg-gradient-to-r from-gray-50/80 to-gray-100/80 rounded-xl border border-gray-200/50 animate-slide-up"
+                    <div *ngFor="let field of getPopularFields(); let i = index"
+                         class="flex justify-between items-center p-4 bg-gradient-to-r from-gray-50/80 to-gray-100/80 rounded-xl border border-gray-200/50 hover:shadow-lg transition-all duration-300 animate-slide-up"
                          [style.animation-delay]="i * 100 + 'ms'">
                       <span class="text-gray-600 font-medium">{{ field.name }}</span>
-                      <span class="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-bold">{{ field.count }}</span>
+                      <span class="text-sm bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-3 py-1 rounded-full font-bold shadow-md">{{ field.count }}</span>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Performance Analytics -->
+            <div class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-white/20 animate-slide-up">
+              <h3 class="text-3xl font-extrabold bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-10 flex items-center">
+                <div class="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mr-5 shadow-lg">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                🎯 Performance Analytics
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-200/50">
+                  <div class="flex items-center justify-between mb-4">
+                    <h4 class="text-lg font-bold text-gray-800">Success Metrics</h4>
+                    <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="space-y-3">
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Successful Sessions</span>
+                      <span class="font-bold text-green-600">{{ getSuccessfulSessions() }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Success Rate</span>
+                      <span class="font-bold text-green-600">{{ getSuccessRate() }}%</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Failed Sessions</span>
+                      <span class="font-bold text-red-500">{{ getFailedSessions() }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-200/50">
+                  <div class="flex items-center justify-between mb-4">
+                    <h4 class="text-lg font-bold text-gray-800">Time Analytics</h4>
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="space-y-3">
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Days Active</span>
+                      <span class="font-bold text-blue-600">{{ getDaysActive() }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Avg. Sessions/Day</span>
+                      <span class="font-bold text-blue-600">{{ getAverageSessionsPerDay() }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Most Active Day</span>
+                      <span class="font-bold text-blue-600">{{ getMostActiveDay() }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-200/50">
+                  <div class="flex items-center justify-between mb-4">
+                    <h4 class="text-lg font-bold text-gray-800">Growth Trends</h4>
+                    <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="space-y-3">
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Last 7 Days</span>
+                      <span class="font-bold" [class]="getWeeklyTrend() >= 0 ? 'text-green-600' : 'text-red-500'">
+                        {{ getWeeklyTrend() >= 0 ? '+' : '' }}{{ getWeeklyTrend() }}%
+                      </span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Last 30 Days</span>
+                      <span class="font-bold" [class]="getMonthlyTrend() >= 0 ? 'text-green-600' : 'text-red-500'">
+                        {{ getMonthlyTrend() >= 0 ? '+' : '' }}{{ getMonthlyTrend() }}%
+                      </span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Streak</span>
+                      <span class="font-bold text-purple-600">{{ getCurrentStreak() }} days</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Detailed Insights Dashboard -->
+            <div class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-white/20 animate-slide-up">
+              <h3 class="text-3xl font-extrabold bg-gradient-to-r from-cyan-600 via-blue-600 to-cyan-700 bg-clip-text text-transparent mb-10 flex items-center">
+                <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mr-5 shadow-lg">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                📈 Detailed Analytics
+              </h3>
+
+              <!-- Session Timeline -->
+              <div class="mb-12">
+                <h4 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                  <div class="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center mr-3">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  Session Timeline (Last 7 Days)
+                </h4>
+                <div class="grid grid-cols-7 gap-2">
+                  <div *ngFor="let day of getLast7DaysActivity(); let i = index"
+                       class="text-center p-4 rounded-xl border transition-all duration-300 hover:shadow-lg"
+                       [class]="day.sessions > 0 ? 'bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200' : 'bg-gray-50 border-gray-200'">
+                    <div class="text-xs font-medium text-gray-600 mb-2">{{ day.dayName }}</div>
+                    <div class="text-lg font-bold" [class]="day.sessions > 0 ? 'text-blue-600' : 'text-gray-400'">{{ day.sessions }}</div>
+                    <div class="text-xs text-gray-500">{{ day.date }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Career Field Distribution -->
+              <div class="mb-12">
+                <h4 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                  <div class="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center mr-3">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                  </div>
+                  Career Field Distribution
+                </h4>
+                <div class="space-y-4">
+                  <div *ngFor="let field of getFieldDistribution(); let i = index"
+                       class="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-300">
+                    <div class="flex items-center space-x-4">
+                      <div class="w-4 h-4 rounded-full" [style.background-color]="getFieldColor(i)"></div>
+                      <span class="font-medium text-gray-700">{{ field.name }}</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                      <div class="w-32 bg-gray-200 rounded-full h-2">
+                        <div class="h-2 rounded-full transition-all duration-500"
+                             [style.width.%]="field.percentage"
+                             [style.background-color]="getFieldColor(i)"></div>
+                      </div>
+                      <span class="text-sm font-bold text-gray-600 min-w-[3rem]">{{ field.percentage }}%</span>
+                      <span class="text-sm bg-gray-100 text-gray-600 px-2 py-1 rounded-full font-medium">{{ field.count }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Stats Grid -->
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-rose-50 to-pink-50 rounded-2xl p-6 border border-rose-200/50 text-center">
+                  <div class="w-12 h-12 bg-gradient-to-r from-rose-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                  </div>
+                  <div class="text-2xl font-bold text-rose-600 mb-1">{{ getFavoriteField() }}</div>
+                  <div class="text-sm text-gray-600">Favorite Field</div>
+                </div>
+                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-200/50 text-center">
+                  <div class="w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                  </div>
+                  <div class="text-2xl font-bold text-amber-600 mb-1">{{ getBestDay() }}</div>
+                  <div class="text-sm text-gray-600">Best Day</div>
+                </div>
+                <div class="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-6 border border-violet-200/50 text-center">
+                  <div class="w-12 h-12 bg-gradient-to-r from-violet-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                  </div>
+                  <div class="text-2xl font-bold text-violet-600 mb-1">{{ getProductivityScore() }}%</div>
+                  <div class="text-sm text-gray-600">Productivity</div>
+                </div>
+                <div class="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-6 border border-teal-200/50 text-center">
+                  <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                  </div>
+                  <div class="text-2xl font-bold text-teal-600 mb-1">{{ getLongestStreak() }}</div>
+                  <div class="text-sm text-gray-600">Longest Streak</div>
                 </div>
               </div>
             </div>
@@ -1877,6 +2095,233 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       .slice(0, 5)
 
     return result.length > 0 ? result : [{ name: 'No fields tracked yet', count: 0 }]
+  }
+
+  // Enhanced statistics methods
+  getTodaySessions(): number {
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 0
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+
+    return this.fullGuidanceHistory.filter((session) => {
+      const sessionDate = new Date(session.createdAt || session.created_at)
+      return sessionDate >= today && sessionDate < tomorrow
+    }).length
+  }
+
+  getFailedSessions(): number {
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 0
+    return this.fullGuidanceHistory.filter((session) =>
+      session.status === "failed" || session.status === "error" || session.status === "cancelled"
+    ).length
+  }
+
+  getDaysActive(): number {
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 0
+    const uniqueDates = new Set()
+
+    this.fullGuidanceHistory.forEach((session) => {
+      const sessionDate = new Date(session.createdAt || session.created_at)
+      const dateString = sessionDate.toDateString()
+      uniqueDates.add(dateString)
+    })
+
+    return uniqueDates.size
+  }
+
+  getAverageSessionsPerDay(): number {
+    const daysActive = this.getDaysActive()
+    if (daysActive === 0) return 0
+    return Math.round((this.fullGuidanceHistory.length / daysActive) * 10) / 10
+  }
+
+  getMostActiveDay(): string {
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 'N/A'
+
+    const dayCounts: { [key: string]: number } = {}
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
+    this.fullGuidanceHistory.forEach((session) => {
+      const sessionDate = new Date(session.createdAt || session.created_at)
+      const dayName = dayNames[sessionDate.getDay()]
+      dayCounts[dayName] = (dayCounts[dayName] || 0) + 1
+    })
+
+    const mostActiveDay = Object.entries(dayCounts)
+      .sort(([,a], [,b]) => b - a)[0]
+
+    return mostActiveDay ? mostActiveDay[0] : 'N/A'
+  }
+
+  getWeeklyTrend(): number {
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 0
+
+    const now = new Date()
+    const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)
+    const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000)
+
+    const thisWeek = this.fullGuidanceHistory.filter((session) => {
+      const sessionDate = new Date(session.createdAt || session.created_at)
+      return sessionDate >= oneWeekAgo
+    }).length
+
+    const lastWeek = this.fullGuidanceHistory.filter((session) => {
+      const sessionDate = new Date(session.createdAt || session.created_at)
+      return sessionDate >= twoWeeksAgo && sessionDate < oneWeekAgo
+    }).length
+
+    if (lastWeek === 0) return thisWeek > 0 ? 100 : 0
+    return Math.round(((thisWeek - lastWeek) / lastWeek) * 100)
+  }
+
+  getMonthlyTrend(): number {
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 0
+
+    const now = new Date()
+    const oneMonthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate())
+    const twoMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 2, now.getDate())
+
+    const thisMonth = this.fullGuidanceHistory.filter((session) => {
+      const sessionDate = new Date(session.createdAt || session.created_at)
+      return sessionDate >= oneMonthAgo
+    }).length
+
+    const lastMonth = this.fullGuidanceHistory.filter((session) => {
+      const sessionDate = new Date(session.createdAt || session.created_at)
+      return sessionDate >= twoMonthsAgo && sessionDate < oneMonthAgo
+    }).length
+
+    if (lastMonth === 0) return thisMonth > 0 ? 100 : 0
+    return Math.round(((thisMonth - lastMonth) / lastMonth) * 100)
+  }
+
+  getCurrentStreak(): number {
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 0
+
+    const sortedSessions = [...this.fullGuidanceHistory].sort((a, b) => {
+      const dateA = new Date(a.createdAt || a.created_at)
+      const dateB = new Date(b.createdAt || b.created_at)
+      return dateB.getTime() - dateA.getTime()
+    })
+
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    let streak = 0
+    let currentDate = new Date(today)
+
+    for (let i = 0; i < 30; i++) { // Check last 30 days
+      const hasSessionOnDate = sortedSessions.some(session => {
+        const sessionDate = new Date(session.createdAt || session.created_at)
+        sessionDate.setHours(0, 0, 0, 0)
+        return sessionDate.getTime() === currentDate.getTime()
+      })
+
+      if (hasSessionOnDate) {
+        streak++
+      } else if (streak > 0) {
+        break
+      }
+
+      currentDate.setDate(currentDate.getDate() - 1)
+    }
+
+    return streak
+  }
+
+  // Additional detailed analytics methods
+  getLast7DaysActivity(): { dayName: string; date: string; sessions: number }[] {
+    const result = []
+    const today = new Date()
+
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date(today)
+      date.setDate(date.getDate() - i)
+
+      const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+      const dayName = dayNames[date.getDay()]
+      const dateString = `${date.getMonth() + 1}/${date.getDate()}`
+
+      const sessions = this.fullGuidanceHistory?.filter(session => {
+        const sessionDate = new Date(session.createdAt || session.created_at)
+        return sessionDate.toDateString() === date.toDateString()
+      }).length || 0
+
+      result.push({ dayName, date: dateString, sessions })
+    }
+
+    return result
+  }
+
+  getFieldDistribution(): { name: string; count: number; percentage: number }[] {
+    const fields = this.getPopularFields()
+    const total = this.fullGuidanceHistory?.length || 0
+
+    if (total === 0) return []
+
+    return fields.map(field => ({
+      ...field,
+      percentage: Math.round((field.count / total) * 100)
+    }))
+  }
+
+  getFieldColor(index: number): string {
+    const colors = [
+      '#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6',
+      '#06B6D4', '#84CC16', '#F97316', '#EC4899', '#6366F1'
+    ]
+    return colors[index % colors.length]
+  }
+
+  getFavoriteField(): string {
+    const fields = this.getPopularFields()
+    return fields.length > 0 && fields[0].count > 0 ? fields[0].name : 'N/A'
+  }
+
+  getBestDay(): string {
+    return this.getMostActiveDay()
+  }
+
+  getProductivityScore(): number {
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return 0
+
+    const successRate = this.getSuccessRate()
+    const consistency = Math.min(100, (this.getDaysActive() / 30) * 100)
+    const activity = Math.min(100, (this.fullGuidanceHistory.length / 10) * 100)
+
+    return Math.round((successRate + consistency + activity) / 3)
+  }
+
+  getLongestStreak(): string {
+    if (!this.fullGuidanceHistory || this.fullGuidanceHistory.length === 0) return '0 days'
+
+    const sortedSessions = [...this.fullGuidanceHistory].sort((a, b) => {
+      const dateA = new Date(a.createdAt || a.created_at)
+      const dateB = new Date(b.createdAt || b.created_at)
+      return dateA.getTime() - dateB.getTime()
+    })
+
+    let longestStreak = 0
+    let currentStreak = 1
+    let lastDate = new Date(sortedSessions[0]?.createdAt || sortedSessions[0]?.created_at)
+
+    for (let i = 1; i < sortedSessions.length; i++) {
+      const currentDate = new Date(sortedSessions[i].createdAt || sortedSessions[i].created_at)
+      const daysDiff = Math.floor((currentDate.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24))
+
+      if (daysDiff === 1) {
+        currentStreak++
+      } else if (daysDiff > 1) {
+        longestStreak = Math.max(longestStreak, currentStreak)
+        currentStreak = 1
+      }
+
+      lastDate = currentDate
+    }
+
+    longestStreak = Math.max(longestStreak, currentStreak)
+    return `${longestStreak} day${longestStreak !== 1 ? 's' : ''}`
   }
 
   // Helper methods for styling
