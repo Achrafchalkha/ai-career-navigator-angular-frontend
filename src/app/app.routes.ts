@@ -42,6 +42,12 @@ export const routes: Routes = [
         path: 'career-guidance/:id',
         loadComponent: () => import('./features/career-guidance-details/career-guidance-details.component').then(m => m.CareerGuidanceDetailsComponent),
         canActivate: [authGuard]
+      },
+      {
+        path: 'career-guidance/history/:id',
+        loadComponent: () => import('./features/career-guidance-details/career-guidance-details.component').then(m => m.CareerGuidanceDetailsComponent),
+        canActivate: [authGuard],
+        data: { activeTab: 'history' }
       }
     ]
   },

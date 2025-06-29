@@ -1753,8 +1753,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   viewHistorySession(session: any): void {
-    // Navigate to the detailed view page (original approach)
-    this.router.navigate(["/ai-career-navigator/career-guidance", session.id || session._id])
+    // Navigate to the detailed view page with history route
+    this.router.navigate(["/ai-career-navigator/career-guidance/history", session.id || session._id])
   }
 
   async deleteHistorySession(sessionId: string): Promise<void> {
