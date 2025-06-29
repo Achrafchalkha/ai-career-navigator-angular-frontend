@@ -287,7 +287,7 @@ import * as L from "leaflet"
               
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div *ngFor="let suggestion of (guidanceData?.careerSuggestions || guidanceData?.career_suggestions || []); let i = index"
-                     class="group relative bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-blue-200/50 hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-slide-up overflow-hidden"
+                     class="group relative bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-blue-200/50 hover:shadow-xl transition-all duration-300 animate-slide-up overflow-hidden"
                      [style.animation-delay]="i * 100 + 'ms'">
                   
                   <!-- Career Icon -->
@@ -380,7 +380,7 @@ import * as L from "leaflet"
                         </div>
                       </div>
                       
-                      <p class="text-gray-700 leading-relaxed mb-4 text-lg font-semibold">{{ step }}</p>
+                      <p class="text-gray-700 leading-relaxed mb-4 text-xl font-bold">{{ step }}</p>
                       
                       <!-- Progress Bar -->
                       <div class="flex items-center justify-between">
@@ -445,7 +445,7 @@ import * as L from "leaflet"
 
                 <div class="space-y-4">
                   <div *ngFor="let course of (guidanceData?.topCourses || guidanceData?.top_courses || []); let i = index"
-                       class="group bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-green-200/50 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-slide-up"
+                       class="group bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-green-200/50 hover:shadow-lg transition-all duration-300 animate-slide-up"
                        [style.animation-delay]="i * 100 + 'ms'">
                     <div class="flex items-start space-x-4">
                       <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
@@ -504,7 +504,7 @@ import * as L from "leaflet"
                 </h3>
                 <div class="grid grid-cols-1 gap-4">
                   <div *ngFor="let skill of (guidanceData?.skillsToTrack || guidanceData?.skills_to_track || []); let i = index"
-                       class="group bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-sm border border-orange-200/50 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-slide-up"
+                       class="group bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-sm border border-orange-200/50 hover:shadow-lg transition-all duration-300 animate-slide-up"
                        [style.animation-delay]="i * 50 + 'ms'">
                     <div class="flex items-center space-x-3">
                       <div class="w-8 h-8 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
@@ -540,7 +540,7 @@ import * as L from "leaflet"
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div *ngFor="let project of (guidanceData?.projectIdeas || guidanceData?.project_ideas || []); let i = index"
-                     class="group bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-indigo-200/50 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-slide-up"
+                     class="group bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-indigo-200/50 hover:shadow-lg transition-all duration-300 animate-slide-up"
                      [style.animation-delay]="i * 100 + 'ms'">
                   <div class="flex items-start space-x-4">
                     <div class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
