@@ -204,7 +204,7 @@ export class RegisterComponent implements OnInit {
     // Check if user is already authenticated
     if (this.authService.isAuthenticated()) {
       // User is already logged in, redirect to dashboard
-      this.router.navigate(['/ai-career-navigator/dashboard'], { replaceUrl: true });
+      this.router.navigate(['/ai-career-navigator/dashboard']);
       return;
     }
   }
@@ -215,8 +215,7 @@ export class RegisterComponent implements OnInit {
 
       this.authService.register(this.registerForm.value).subscribe({
         next: () => {
-          // Replace current history entry to prevent back navigation to register
-          this.router.navigate(["/ai-career-navigator/dashboard"], { replaceUrl: true })
+          this.router.navigate(["/ai-career-navigator/dashboard"])
         },
         error: (error) => {
           console.error("Registration error:", error)

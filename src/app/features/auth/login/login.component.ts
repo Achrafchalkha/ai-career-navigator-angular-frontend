@@ -156,7 +156,7 @@ export class LoginComponent implements OnInit {
     // Check if user is already authenticated
     if (this.authService.isAuthenticated()) {
       // User is already logged in, redirect to dashboard
-      this.router.navigate(['/ai-career-navigator/dashboard'], { replaceUrl: true });
+      this.router.navigate(['/ai-career-navigator/dashboard']);
       return;
     }
   }
@@ -169,8 +169,7 @@ export class LoginComponent implements OnInit {
         .login(this.loginForm.value)
         .subscribe({
           next: () => {
-            // Replace current history entry to prevent back navigation to login
-            this.router.navigate(["/ai-career-navigator/dashboard"], { replaceUrl: true })
+            this.router.navigate(["/ai-career-navigator/dashboard"])
           },
           error: (error) => {
             console.error("Login error:", error)
