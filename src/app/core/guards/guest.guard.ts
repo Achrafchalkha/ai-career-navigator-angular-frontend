@@ -25,7 +25,7 @@ export class GuestGuard implements CanActivate {
           return true;
         } else {
           // User is already authenticated, redirect to dashboard
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/ai-career-navigator/dashboard']);
           return false;
         }
       })

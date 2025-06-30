@@ -10,6 +10,7 @@ export const authGuard = () => {
     return true;
   }
 
-  router.navigate(['/ai-career-navigator/login']);
+  // Clear any existing history and redirect to login
+  router.navigate(['/ai-career-navigator/login'], { replaceUrl: true });
   return false;
 };

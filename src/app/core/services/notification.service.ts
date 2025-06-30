@@ -73,13 +73,6 @@ export class NotificationService {
   }
 
   // Convenience methods for common scenarios
-  showLoginSuccess(): void {
-    this.showSuccess('Welcome back! You have been successfully logged in.');
-  }
-
-  showLogoutSuccess(): void {
-    this.showSuccess('You have been successfully logged out.');
-  }
 
   showRegistrationSuccess(): void {
     this.showSuccess('Account created successfully! Welcome to AI Career Navigator.');

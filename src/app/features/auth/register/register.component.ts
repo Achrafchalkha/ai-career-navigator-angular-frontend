@@ -1,9 +1,10 @@
-import { Component } from "@angular/core"
+import { Component, OnInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { FormBuilder, type FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
 import { Router, RouterModule } from "@angular/router"
 import { AuthService } from "../../../core/services/auth.service"
 import { ToastrService } from 'ngx-toastr'
+import { Location } from '@angular/common'
 
 @Component({
   selector: "app-register",
@@ -181,7 +182,7 @@ import { ToastrService } from 'ngx-toastr'
   `,
   ],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup
   isLoading = false
 
@@ -190,6 +191,7 @@ export class RegisterComponent {
     private router: Router,
     private authService: AuthService,
     private toastr: ToastrService,
+    private location: Location
   ) {
     this.registerForm = this.fb.group({
       firstName: ["", [Validators.required, Validators.minLength(2)]],
@@ -200,14 +202,19 @@ export class RegisterComponent {
     })
   }
 
+  ngOnInit(): void {
+    // Replace current history entry to prevent back navigation issues
+    this.location.replaceState('/ai-career-navigator/register');
+  }
+
   onSubmit(): void {
     if (this.registerForm.valid) {
       this.isLoading = true
 
       this.authService.register(this.registerForm.value).subscribe({
         next: () => {
-          this.toastr.success("Registration successful")
-          this.router.navigate(["/ai-career-navigator/dashboard"])
+          // Replace current history entry to prevent back navigation to register
+          this.router.navigate(["/ai-career-navigator/dashboard"], { replaceUrl: true })
         },
         error: (error) => {
           console.error("Registration error:", error)

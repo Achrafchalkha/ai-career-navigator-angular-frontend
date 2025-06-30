@@ -1,9 +1,10 @@
-import { Component } from "@angular/core"
+import { Component, OnInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { FormBuilder, type FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
 import { Router, RouterModule } from "@angular/router"
 import { AuthService } from "../../../core/services/auth.service"
 import { ToastrService } from 'ngx-toastr'
+import { Location } from '@angular/common'
 
 @Component({
   selector: "app-login",
@@ -136,7 +137,7 @@ import { ToastrService } from 'ngx-toastr'
   `,
   ],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup
   isLoading = false
 
@@ -145,11 +146,17 @@ export class LoginComponent {
     private router: Router,
     private authService: AuthService,
     private toastr: ToastrService,
+    private location: Location
   ) {
     this.loginForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(8)]],
     })
+  }
+
+  ngOnInit(): void {
+    // Replace current history entry to prevent back navigation issues
+    this.location.replaceState('/ai-career-navigator/login');
   }
 
   onSubmit(): void {
@@ -160,8 +167,8 @@ export class LoginComponent {
         .login(this.loginForm.value)
         .subscribe({
           next: () => {
-            this.toastr.success("Login successful")
-            this.router.navigate(["/ai-career-navigator/dashboard"])
+            // Replace current history entry to prevent back navigation to login
+            this.router.navigate(["/ai-career-navigator/dashboard"], { replaceUrl: true })
           },
           error: (error) => {
             console.error("Login error:", error)
