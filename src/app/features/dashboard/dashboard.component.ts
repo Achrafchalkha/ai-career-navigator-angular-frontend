@@ -1086,7 +1086,7 @@ import * as L from 'leaflet'
                     </svg>
                   </div>
                   <h4 class="text-lg font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-                    💡 Career Suggestions Preview
+                    Career Suggestions Preview
                   </h4>
                 </div>
                 <div class="flex flex-wrap gap-3">
