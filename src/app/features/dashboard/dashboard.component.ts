@@ -979,70 +979,128 @@ import * as L from 'leaflet'
           <!-- History List -->
           <div class="space-y-6">
             <div *ngFor="let session of filteredHistory; let i = index"
-                 class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 hover:shadow-3xl transition-all duration-300 transform hover:scale-[1.02] animate-slide-up"
+                 class="group bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/30 hover:shadow-2xl transition-all duration-500 animate-slide-up overflow-hidden"
                  [style.animation-delay]="i * 100 + 'ms'">
-              <div class="p-8">
-                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+
+              <!-- Session Header with Gradient Background -->
+              <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 p-6 border-b border-gray-100">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                   <div class="flex-1">
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">
-                      Career Guidance Session #{{ fullGuidanceHistory.length - i }}
-                    </h3>
-                    <div class="flex flex-wrap gap-3 mb-3">
-                      <span class="text-sm text-gray-600 flex items-center">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a4 4 0 118 0v4m-4 12v-2m0 0V9a2 2 0 012-2h2a2 2 0 012 2v2M8 7a2 2 0 012-2h2a2 2 0 012 2v2H8V7z"></path>
+                    <!-- Session Title with Enhanced Typography -->
+                    <div class="flex items-center mb-4">
+                      <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                         </svg>
-                        {{ formatDate(session.createdAt) }}
-                      </span>
-                      <span class="text-sm px-3 py-1 rounded-full font-medium"
-                            [ngClass]="{
-                              'bg-green-100 text-green-800': session.status === 'success',
-                              'bg-yellow-100 text-yellow-800': session.status === 'processing',
-                              'bg-red-100 text-red-800': session.status === 'error'
-                            }">
-                        {{ session.status | titlecase }}
-                      </span>
+                      </div>
+                      <div>
+                        <h3 class="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                          Career Guidance Session #{{ fullGuidanceHistory.length - i }}
+                        </h3>
+                        <p class="text-sm text-gray-500 font-medium">AI-Powered Career Analysis</p>
+                      </div>
                     </div>
-                    <div *ngIf="session.userProfile" class="text-sm text-gray-600">
-                      <span class="font-medium">Field:</span> {{ session.userProfile.desiredField || 'Not specified' }} |
-                      <span class="font-medium">Experience:</span> {{ session.userProfile.experienceLevel || 'Not specified' }}
+
+                    <!-- Session Metadata with Enhanced Design -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <!-- Date & Time -->
+                      <div class="flex items-center p-3 bg-white/60 rounded-xl border border-gray-200/50">
+                        <div class="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center mr-3">
+                          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V7a2 2 0 012-2h4a2 2 0 012 2v0M8 7v8a2 2 0 002 2h4a2 2 0 002-2V7M8 7H6a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V9a2 2 0 00-2-2h-2"></path>
+                          </svg>
+                        </div>
+                        <div>
+                          <p class="text-xs text-gray-500 font-medium">Created</p>
+                          <p class="text-sm font-bold text-gray-700">{{ formatDate(session.createdAt) }}</p>
+                        </div>
+                      </div>
+
+                      <!-- Status -->
+                      <div class="flex items-center p-3 bg-white/60 rounded-xl border border-gray-200/50">
+                        <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3"
+                             [class]="session.status === 'success' ? 'bg-gradient-to-r from-green-500 to-emerald-500' : session.status === 'error' ? 'bg-gradient-to-r from-red-500 to-rose-500' : 'bg-gradient-to-r from-yellow-500 to-orange-500'">
+                          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path *ngIf="session.status === 'success'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            <path *ngIf="session.status === 'error'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            <path *ngIf="session.status === 'processing'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                          </svg>
+                        </div>
+                        <div>
+                          <p class="text-xs text-gray-500 font-medium">Status</p>
+                          <p class="text-sm font-bold" [class]="session.status === 'success' ? 'text-green-600' : session.status === 'error' ? 'text-red-600' : 'text-yellow-600'">
+                            {{ session.status === 'success' ? 'Completed' : session.status === 'error' ? 'Failed' : 'Processing' }}
+                          </p>
+                        </div>
+                      </div>
+
+                      <!-- Field & Experience -->
+                      <div class="flex items-center p-3 bg-white/60 rounded-xl border border-gray-200/50">
+                        <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mr-3">
+                          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+                          </svg>
+                        </div>
+                        <div>
+                          <p class="text-xs text-gray-500 font-medium">Profile</p>
+                          <p class="text-sm font-bold text-gray-700">{{ session.userProfile?.desiredField || 'Not specified' }}</p>
+                          <p class="text-xs text-gray-500">{{ session.userProfile?.experienceLevel || 'Not specified' }} Level</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="flex items-center space-x-3 mt-6 md:mt-0">
+
+                  <!-- Action Buttons -->
+                  <div class="flex gap-3 mt-6 lg:mt-0 lg:ml-6">
                     <button
                       (click)="viewHistorySession(session)"
-                      class="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg text-sm font-medium"
+                      class="group relative px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg font-medium flex items-center space-x-2 overflow-hidden"
                     >
-                      <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div class="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <svg class="w-4 h-4 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                       </svg>
-                      View
+                      <span class="relative z-10">View Details</span>
                     </button>
                     <button
                       (click)="deleteHistorySession(session.id)"
-                      class="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-xl hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg text-sm font-medium"
+                      class="group relative px-6 py-3 bg-gradient-to-r from-red-500 to-rose-500 text-white rounded-xl hover:from-red-600 hover:to-rose-600 transition-all duration-300 shadow-lg font-medium flex items-center space-x-2 overflow-hidden"
                     >
-                      <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-rose-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <svg class="w-4 h-4 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                       </svg>
-                      Delete
+                      <span class="relative z-10">Delete</span>
                     </button>
                   </div>
                 </div>
+              </div>
 
-                <!-- Quick Preview -->
-                <div *ngIf="session.careerSuggestions?.length" class="mt-6 p-6 bg-gradient-to-r from-gray-50/80 to-gray-100/80 rounded-xl border border-gray-200/50">
-                  <h4 class="text-sm font-bold text-gray-700 mb-3">Career Suggestions Preview:</h4>
-                  <div class="flex flex-wrap gap-2">
-                    <span *ngFor="let suggestion of session.careerSuggestions.slice(0, 3); let i = index"
-                          class="text-xs px-3 py-1 bg-blue-100 text-blue-800 rounded-full font-medium animate-slide-up"
-                          [style.animation-delay]="i * 50 + 'ms'">
-                      {{ suggestion }}
-                    </span>
-                    <span *ngIf="session.careerSuggestions.length > 3"
-                          class="text-xs px-3 py-1 bg-gray-200 text-gray-600 rounded-full font-medium">
-                      +{{ session.careerSuggestions.length - 3 }} more
+              <!-- Career Suggestions Preview -->
+              <div *ngIf="session.careerSuggestions?.length" class="p-6">
+                <div class="flex items-center mb-4">
+                  <div class="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center mr-3">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                  </div>
+                  <h4 class="text-lg font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+                    💡 Career Suggestions Preview
+                  </h4>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                  <div *ngFor="let suggestion of session.careerSuggestions.slice(0, 3)"
+                       class="group relative px-4 py-3 bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 border-2 border-blue-200/50 rounded-xl hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
+                    <div class="flex items-center space-x-2">
+                      <div class="w-2 h-2 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"></div>
+                      <span class="text-sm font-semibold text-gray-700">{{ suggestion }}</span>
+                    </div>
+                  </div>
+                  <div *ngIf="session.careerSuggestions.length > 3"
+                       class="flex items-center px-4 py-3 bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-gray-200 rounded-xl">
+                    <span class="text-sm font-medium text-gray-600">
+                      +{{ session.careerSuggestions.length - 3 }} more suggestions
                     </span>
                   </div>
                 </div>
@@ -1159,7 +1217,7 @@ import * as L from 'leaflet'
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                   </svg>
                 </div>
-                📊 Usage Insights
+                 Usage Insights
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
@@ -1219,7 +1277,7 @@ import * as L from 'leaflet'
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
                 </div>
-                🎯 Performance Analytics
+                 Performance Analytics
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-200/50">
@@ -1309,7 +1367,7 @@ import * as L from 'leaflet'
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                   </svg>
                 </div>
-                📈 Detailed Analytics
+                 Detailed Analytics
               </h3>
 
               <!-- Session Timeline -->
