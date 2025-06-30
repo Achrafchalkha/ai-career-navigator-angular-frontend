@@ -4,7 +4,6 @@ import { FormBuilder, type FormGroup, ReactiveFormsModule, Validators } from "@a
 import { Router, RouterModule } from "@angular/router"
 import { AuthService } from "../../../core/services/auth.service"
 import { ToastrService } from 'ngx-toastr'
-import { Location } from '@angular/common'
 
 @Component({
   selector: "app-login",
@@ -145,8 +144,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private toastr: ToastrService,
-    private location: Location
+    private toastr: ToastrService
   ) {
     this.loginForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
@@ -161,9 +159,6 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/ai-career-navigator/dashboard'], { replaceUrl: true });
       return;
     }
-
-    // Replace current history entry to prevent back navigation issues
-    this.location.replaceState('/ai-career-navigator/login');
   }
 
   onSubmit(): void {
