@@ -220,7 +220,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
         <div class="absolute bottom-1/3 left-3/4 w-3 h-8 bg-gradient-to-b from-pink-500/20 to-transparent animate-pulse" style="animation-delay: 2s;"></div>
       </div>
 
-      <div class="relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+      <div class="relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <div class="text-center">
           <!-- Enhanced Hero Badge -->
           <div class="hero-title inline-flex items-center space-x-4 bg-gradient-to-r from-blue-50/90 via-purple-50/90 to-indigo-50/90 backdrop-blur-lg rounded-full px-10 py-5 mb-6 border border-blue-200/60 shadow-xl hover:shadow-2xl transition-all duration-700 group cursor-pointer">
@@ -261,21 +261,16 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
           <!-- Enhanced CTA Buttons -->
           <div class="hero-buttons flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
             <a routerLink="/ai-career-navigator/register"
-               class="group relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-12 py-6 rounded-3xl font-bold text-xl overflow-hidden transition-all duration-700 transform hover:scale-110 shadow-2xl hover:shadow-4xl hover:shadow-blue-500/30">
-              <span class="relative z-10 flex items-center">
-                <svg class="w-6 h-6 mr-3 transform group-hover:rotate-12 transition-transform duration-500" fill="currentColor" viewBox="0 0 20 20">
+               class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-12 py-6 rounded-3xl font-bold text-xl shadow-2xl">
+              <span class="flex items-center">
+                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                 </svg>
                 Start Your Journey
-                <svg class="w-6 h-6 ml-3 transform group-hover:translate-x-3 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
               </span>
-              <div class="absolute inset-0 bg-gradient-to-r from-blue-700 via-purple-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"></div>
-              <!-- Enhanced Ripple Effect -->
-              <div class="absolute inset-0 rounded-3xl bg-white/20 transform scale-0 group-hover:scale-150 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-              <div class="absolute -inset-2 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500"></div>
             </a>
             
             <a routerLink="/ai-career-navigator/login"
@@ -645,18 +640,16 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
           
           <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a routerLink="/ai-career-navigator/register"
-               class="group relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-12 py-6 rounded-2xl font-bold text-xl overflow-hidden transition-all duration-500 transform hover:scale-105 shadow-2xl hover:shadow-3xl hover:shadow-blue-500/25">
-              <span class="relative z-10 flex items-center">
-                <svg class="w-6 h-6 mr-3 transform group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+               class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl">
+              <span class="flex items-center">
+                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                 </svg>
                 Start Your Journey Today
-                <svg class="w-6 h-6 ml-3 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
               </span>
-              <div class="absolute inset-0 bg-gradient-to-r from-blue-700 via-purple-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div class="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
             </a>
             
             <a routerLink="/ai-career-navigator/login"
@@ -680,15 +673,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <!-- Brand Section -->
           <div class="md:col-span-2">
-            <div class="flex items-center space-x-4 mb-8">
-              <div class="relative">
-                <div class="absolute -inset-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl opacity-20 blur-lg"></div>
-                <div class="relative bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-xl shadow-lg">
-                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                  </svg>
-                </div>
-              </div>
+            <div class="mb-8">
               <h3 class="text-3xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
                 AI Career Navigator
               </h3>
