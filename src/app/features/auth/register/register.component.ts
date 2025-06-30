@@ -203,6 +203,13 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Check if user is already authenticated
+    if (this.authService.isAuthenticated()) {
+      // User is already logged in, redirect to dashboard
+      this.router.navigate(['/ai-career-navigator/dashboard'], { replaceUrl: true });
+      return;
+    }
+
     // Replace current history entry to prevent back navigation issues
     this.location.replaceState('/ai-career-navigator/register');
   }
