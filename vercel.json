@@ -1,19 +1,11 @@
 {
   "version": 2,
-  "builds": [
+  "buildCommand": "ng build --configuration production",
+  "outputDirectory": "dist/frontend-aicareer",
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/frontend-aicareer"
-      }
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-  "buildCommand": "ng build --configuration production"
+  ]
 }
