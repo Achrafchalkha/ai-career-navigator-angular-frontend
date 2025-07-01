@@ -1,6 +1,6 @@
 import { Component, type OnInit, type OnDestroy, HostListener } from "@angular/core"
 import { CommonModule } from "@angular/common"
-import { RouterModule } from "@angular/router"
+import { RouterModule, Router } from "@angular/router"
 import { trigger, state, style, transition, animate, keyframes, query, stagger, group } from "@angular/animations"
 
 @Component({
@@ -46,7 +46,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
     trigger("floatingOrb", [
       transition("* => *", [
         animate(
-          "12s ease-in-out infinite",
+          "12s ease-in-out",
           keyframes([
             style({ transform: "translate(0, 0) scale(1) rotate(0deg)", offset: 0 }),
             style({ transform: "translate(150px, 80px) scale(1.3) rotate(180deg)", offset: 0.33 }),
@@ -91,7 +91,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
     trigger("scrollingTestimonials", [
       transition("* => *", [
         animate(
-          "30s linear infinite",
+          "30s linear",
           keyframes([
             style({ transform: "translateX(0%)", offset: 0 }),
             style({ transform: "translateX(-100%)", offset: 1 }),
@@ -117,25 +117,25 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
           <!-- Desktop Menu -->
           <div class="hidden md:flex items-center space-x-8">
             <div class="flex items-center space-x-6">
-              <a href="#features" class="text-gray-700 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-50 relative group">
+              <button (click)="scrollToSection('features')" class="text-gray-700 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-50 relative group">
                 Features
                 <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
-              </a>
-              <a href="#how-it-works" class="text-gray-700 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-50 relative group">
+              </button>
+              <button (click)="scrollToSection('how-it-works')" class="text-gray-700 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-50 relative group">
                 How It Works
                 <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
-              </a>
-              <a href="#testimonials" class="text-gray-700 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-50 relative group">
+              </button>
+              <button (click)="scrollToSection('testimonials')" class="text-gray-700 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-50 relative group">
                 Testimonials
                 <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
-              </a>
+              </button>
             </div>
             <div class="flex items-center space-x-4">
-              <a routerLink="/ai-career-navigator/login"
+              <button (click)="navigateToLogin()"
                  class="text-gray-700 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 border border-transparent hover:border-blue-200">
                 Sign In
-              </a>
-              <a routerLink="/ai-career-navigator/register"
+              </button>
+              <button (click)="navigateToRegister()"
                  class="group relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg text-sm font-semibold overflow-hidden transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25">
                 <span class="relative z-10 flex items-center">
                   Get Started
@@ -145,7 +145,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
                 </span>
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-700 via-purple-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-              </a>
+              </button>
             </div>
           </div>
 
@@ -167,9 +167,9 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
       <div class="md:hidden overflow-hidden transition-all duration-300" [class.max-h-96]="isMobileMenuOpen" [class.max-h-0]="!isMobileMenuOpen">
         <div class="bg-white/95 backdrop-blur-xl border-t border-gray-100/50 shadow-lg">
           <div class="px-6 py-6 space-y-4">
-            <a href="#features" class="block text-gray-700 hover:text-blue-600 py-3 text-base font-medium transition-colors duration-300">Features</a>
-            <a href="#how-it-works" class="block text-gray-700 hover:text-blue-600 py-3 text-base font-medium transition-colors duration-300">How It Works</a>
-            <a href="#testimonials" class="block text-gray-700 hover:text-blue-600 py-3 text-base font-medium transition-colors duration-300">Testimonials</a>
+            <button (click)="scrollToSection('features'); toggleMobileMenu()" class="block w-full text-left text-gray-700 hover:text-blue-600 py-3 text-base font-medium transition-colors duration-300">Features</button>
+            <button (click)="scrollToSection('how-it-works'); toggleMobileMenu()" class="block w-full text-left text-gray-700 hover:text-blue-600 py-3 text-base font-medium transition-colors duration-300">How It Works</button>
+            <button (click)="scrollToSection('testimonials'); toggleMobileMenu()" class="block w-full text-left text-gray-700 hover:text-blue-600 py-3 text-base font-medium transition-colors duration-300">Testimonials</button>
             <div class="pt-4 border-t border-gray-200 space-y-3">
               <a routerLink="/ai-career-navigator/login"
                  class="block text-center text-gray-700 hover:text-blue-600 py-2 text-base font-medium transition-colors duration-300">
@@ -228,7 +228,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
               <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-ping opacity-30"></div>
               <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full animate-pulse opacity-40"></div>
               <svg class="w-7 h-7 text-yellow-500 relative z-10 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
               </svg>
             </div>
             <span class="text-lg font-bold bg-gradient-to-r from-blue-700 via-purple-700 to-indigo-700 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
@@ -260,26 +260,27 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
 
           <!-- Enhanced CTA Buttons -->
           <div class="hero-buttons flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
-            <a routerLink="/ai-career-navigator/register"
-               class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-12 py-6 rounded-3xl font-bold text-xl shadow-2xl">
-              <span class="flex items-center">
-                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            <button (click)="navigateToRegister()"
+               class="group bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 relative overflow-hidden">
+              <span class="flex items-center relative z-10">
+                <svg class="w-5 h-5 mr-2 transform group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                 </svg>
                 Start Your Journey
-                <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
               </span>
-            </a>
+              <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
             
-            <a routerLink="/ai-career-navigator/login"
-               class="group border-4 border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-600 px-12 py-6 rounded-3xl font-bold text-xl transition-all duration-700 bg-white/80 backdrop-blur-lg hover:bg-white/95 hover:shadow-2xl flex items-center">
-              <svg class="w-6 h-6 mr-3 transform group-hover:scale-125 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button (click)="navigateToLogin()"
+               class="group border-2 border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 bg-white/80 backdrop-blur-lg hover:bg-white/95 hover:shadow-xl flex items-center">
+              <svg class="w-5 h-5 mr-2 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
               </svg>
               Sign In
-            </a>
+            </button>
           </div>
 
           <!-- Enhanced Stats Preview -->
@@ -508,7 +509,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
         <div class="text-center mb-20" [@fadeInUp]="testimonialsVisible">
           <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-100 to-orange-100 rounded-full px-6 py-3 mb-8 border border-yellow-200/50">
             <svg class="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
             </svg>
             <span class="text-sm font-semibold text-yellow-700">Success Stories</span>
           </div>
@@ -542,7 +543,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
                   <svg *ngFor="let star of getStars(testimonial.rating)" 
                        class="w-6 h-6 text-yellow-400 fill-current transform group-hover:scale-110 transition-transform duration-300"
                        style="transition-delay: {{star * 100}}ms">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                   </svg>
                 </div>
               </div>
@@ -585,7 +586,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
                   <svg *ngFor="let star of getStars(testimonial.rating)" 
                        class="w-6 h-6 text-yellow-400 fill-current transform group-hover:scale-110 transition-transform duration-300"
                        style="transition-delay: {{star * 100}}ms">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                   </svg>
                 </div>
               </div>
@@ -639,23 +640,24 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
           </p>
           
           <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a routerLink="/ai-career-navigator/register"
-               class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl">
-              <span class="flex items-center">
-                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            <button (click)="navigateToRegister()"
+               class="group bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 relative overflow-hidden">
+              <span class="flex items-center relative z-10">
+                <svg class="w-5 h-5 mr-2 transform group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                 </svg>
                 Start Your Journey Today
-                <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
               </span>
-            </a>
+              <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
             
-            <a routerLink="/ai-career-navigator/login"
-               class="group border-2 border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-600 px-12 py-6 rounded-2xl font-bold text-xl transition-all duration-500 bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:shadow-xl">
+            <button (click)="navigateToLogin()"
+               class="group border-2 border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:shadow-xl">
               Already have an account? Sign in
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -1024,7 +1026,13 @@ export class LandingComponent implements OnInit, OnDestroy {
     },
   ]
 
+  constructor(private router: Router) {}
+
   ngOnInit() {
+    console.log('🏠 Landing Component Initialized');
+    console.log('📍 Current URL:', this.router.url);
+    console.log('🌐 Browser URL:', window.location.href);
+    console.log('📚 History Length:', window.history.length);
     // Initialize particles
     this.generateParticles()
 
@@ -1057,6 +1065,55 @@ export class LandingComponent implements OnInit, OnDestroy {
 
   getStars(rating: number): number[] {
     return Array(rating).fill(0)
+  }
+
+  // Debug navigation methods
+  navigateToLogin() {
+    console.log('🔐 Sign In button clicked');
+    console.log('📍 Current URL before navigation:', this.router.url);
+    console.log('🌐 Browser URL before navigation:', window.location.href);
+    console.log('📚 History Length before navigation:', window.history.length);
+
+    this.router.navigate(['/ai-career-navigator/login']).then(success => {
+      console.log('✅ Navigation to login successful:', success);
+      console.log('📍 URL after navigation:', this.router.url);
+      console.log('🌐 Browser URL after navigation:', window.location.href);
+      console.log('📚 History Length after navigation:', window.history.length);
+    }).catch(error => {
+      console.error('❌ Navigation to login failed:', error);
+    });
+  }
+
+  navigateToRegister() {
+    console.log('📝 Get Started button clicked');
+    console.log('📍 Current URL before navigation:', this.router.url);
+    console.log('🌐 Browser URL before navigation:', window.location.href);
+    console.log('📚 History Length before navigation:', window.history.length);
+
+    this.router.navigate(['/ai-career-navigator/register']).then(success => {
+      console.log('✅ Navigation to register successful:', success);
+      console.log('📍 URL after navigation:', this.router.url);
+      console.log('🌐 Browser URL after navigation:', window.location.href);
+      console.log('📚 History Length after navigation:', window.history.length);
+    }).catch(error => {
+      console.error('❌ Navigation to register failed:', error);
+    });
+  }
+
+  // Smooth scroll to section
+  scrollToSection(sectionId: string) {
+    console.log(`🎯 Scrolling to section: ${sectionId}`);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest'
+      });
+      console.log(`✅ Scrolled to ${sectionId} section`);
+    } else {
+      console.warn(`⚠️ Section with ID '${sectionId}' not found`);
+    }
   }
 
   @HostListener("window:scroll", ["$event"])
