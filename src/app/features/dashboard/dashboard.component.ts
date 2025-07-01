@@ -474,7 +474,7 @@ import * as L from 'leaflet'
               <div class="relative z-10 space-y-8">
                 <!-- Career Suggestions - Enhanced Structure -->
                 <div class="bg-gradient-to-br from-blue-50/80 to-indigo-50/80 backdrop-blur-sm rounded-2xl p-8 border border-blue-100/50 transform hover:scale-[1.02] transition-all duration-300">
-                  <h3 class="text-3xl font-extrabold bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 bg-clip-text text-transparent mb-10 flex items-center">
+                  <h3 class="text-4xl font-extrabold bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 bg-clip-text text-transparent mb-10 flex items-center">
                     <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mr-5 shadow-lg transform hover:scale-110 transition-all duration-300">
                       <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
@@ -622,7 +622,7 @@ import * as L from 'leaflet'
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   <!-- Top Courses -->
                   <div class="bg-gradient-to-br from-green-50/80 to-emerald-50/80 backdrop-blur-sm rounded-2xl p-8 border border-green-100/50 transform hover:scale-105 transition-all duration-300">
-                    <h3 class="text-3xl font-extrabold bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 bg-clip-text text-transparent mb-8 flex items-center">
+                    <h3 class="text-4xl font-extrabold bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 bg-clip-text text-transparent mb-8 flex items-center">
                       <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mr-5 shadow-lg transform hover:scale-110 transition-all duration-300">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
@@ -675,13 +675,13 @@ import * as L from 'leaflet'
 
                   <!-- Skills to Track -->
                   <div class="bg-gradient-to-br from-orange-50/80 to-yellow-50/80 backdrop-blur-sm rounded-2xl p-8 border border-orange-100/50 transform hover:scale-105 transition-all duration-300">
-                    <h3 class="text-3xl font-extrabold bg-gradient-to-r from-orange-600 via-amber-600 to-orange-700 bg-clip-text text-transparent mb-8 flex items-center">
+                    <h3 class="text-4xl font-extrabold bg-gradient-to-r from-orange-600 via-amber-600 to-orange-700 bg-clip-text text-transparent mb-8 flex items-center">
                       <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-amber-600 rounded-2xl flex items-center justify-center mr-5 shadow-lg transform hover:scale-110 transition-all duration-300">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
                       </div>
-                      🚀 Skills to Develop
+                       Skills to Develop
                     </h3>
                     <div class="grid grid-cols-1 gap-4">
                       <div *ngFor="let skill of (guidanceResult?.skillsToTrack || guidanceResult?.skills_to_track || []); let i = index"
@@ -706,13 +706,13 @@ import * as L from 'leaflet'
 
                 <!-- Project Ideas -->
                 <div class="bg-gradient-to-br from-indigo-50/80 to-blue-50/80 backdrop-blur-sm rounded-2xl p-8 border border-indigo-100/50 transform hover:scale-[1.02] transition-all duration-300">
-                  <h3 class="text-3xl font-extrabold bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 bg-clip-text text-transparent mb-8 flex items-center">
+                  <h3 class="text-4xl font-extrabold bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 bg-clip-text text-transparent mb-8 flex items-center">
                     <div class="w-12 h-12 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-2xl flex items-center justify-center mr-5 shadow-lg transform hover:scale-110 transition-all duration-300">
                       <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
                       </svg>
                     </div>
-                    💡 Project Ideas
+                     Project Ideas
                   </h3>
                   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div *ngFor="let project of (guidanceResult?.projectIdeas || guidanceResult?.project_ideas || []); let i = index"
@@ -738,13 +738,13 @@ import * as L from 'leaflet'
 
                 <!-- Job Market Insights -->
                 <div *ngIf="guidanceResult?.jobMarket || guidanceResult?.job_market" class="bg-gradient-to-br from-teal-50/80 to-cyan-50/80 backdrop-blur-sm rounded-2xl p-8 border border-teal-100/50 transform hover:scale-[1.02] transition-all duration-300">
-                  <h3 class="text-3xl font-extrabold bg-gradient-to-r from-teal-600 via-cyan-600 to-teal-700 bg-clip-text text-transparent mb-10 flex items-center">
+                  <h3 class="text-4xl font-extrabold bg-gradient-to-r from-teal-600 via-cyan-600 to-teal-700 bg-clip-text text-transparent mb-10 flex items-center">
                     <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mr-5 shadow-lg transform hover:scale-110 transition-all duration-300">
                       <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                       </svg>
                     </div>
-                    📊 Job Market Insights
+                     Job Market Insights
                   </h3>
                   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <div class="text-center p-6 bg-white/80 rounded-xl border border-teal-200/50 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
@@ -1220,7 +1220,7 @@ import * as L from 'leaflet'
 
             <!-- Enhanced Usage Insights -->
             <div class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-white/20 animate-slide-up">
-              <h3 class="text-3xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent mb-10 flex items-center">
+              <h3 class="text-4xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent mb-10 flex items-center">
                 <div class="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mr-5 shadow-lg">
                   <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
@@ -1280,7 +1280,7 @@ import * as L from 'leaflet'
 
             <!-- Performance Analytics -->
             <div class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-white/20 animate-slide-up">
-              <h3 class="text-3xl font-extrabold bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-10 flex items-center">
+              <h3 class="text-4xl font-extrabold bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-10 flex items-center">
                 <div class="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mr-5 shadow-lg">
                   <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -1370,7 +1370,7 @@ import * as L from 'leaflet'
 
             <!-- Detailed Insights Dashboard -->
             <div class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-white/20 animate-slide-up">
-              <h3 class="text-3xl font-extrabold bg-gradient-to-r from-cyan-600 via-blue-600 to-cyan-700 bg-clip-text text-transparent mb-10 flex items-center">
+              <h3 class="text-4xl font-extrabold bg-gradient-to-r from-cyan-600 via-blue-600 to-cyan-700 bg-clip-text text-transparent mb-10 flex items-center">
                 <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mr-5 shadow-lg">
                   <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
