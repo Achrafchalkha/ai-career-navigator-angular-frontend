@@ -14,6 +14,29 @@
 /* Angular Material Theme - Using prebuilt theme for now */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+/* Fix for Material Icons SVG path issues */
+.mat-icon {
+  /* Ensure Material Icons use font rendering instead of SVG when possible */
+  font-family: 'Material Icons', 'Material Symbols Outlined', sans-serif !important;
+  font-feature-settings: 'liga' 1;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+
+  /* Hide any malformed SVG paths */
+  svg path[d*="588-.588"] {
+    display: none !important;
+  }
+
+  /* Fallback for any broken SVG icons */
+  svg {
+    overflow: hidden;
+  }
+
+  svg path {
+    vector-effect: non-scaling-stroke;
+  }
+}
+
 /* Custom CSS Variables */
 :root {
   --primary-color: #3f51b5;
