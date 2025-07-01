@@ -480,7 +480,7 @@ import * as L from 'leaflet'
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
                       </svg>
                     </div>
-                    🎯 Career Suggestions
+                     Career Suggestions
                   </h3>
                   
                   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -628,7 +628,7 @@ import * as L from 'leaflet'
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                         </svg>
                       </div>
-                      📚 Recommended Courses
+                       Recommended Courses
                     </h3>
                     <div class="space-y-4">
                       <div *ngFor="let course of (guidanceResult?.topCourses || guidanceResult?.top_courses || []); let i = index"
@@ -898,8 +898,16 @@ import * as L from 'leaflet'
             </div>
           </div>
 
-          <!-- History Stats -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <!-- Loading State for History -->
+          <div *ngIf="loadingHistory" class="text-center py-16 animate-fade-in">
+            <div class="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent mx-auto mb-6"></div>
+            <p class="text-gray-600 text-lg">Loading history...</p>
+          </div>
+
+          <!-- History Content (only show when not loading) -->
+          <div *ngIf="!loadingHistory">
+            <!-- History Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/20 transform hover:scale-105 transition-all duration-300 animate-slide-up">
               <div class="flex items-center">
                 <div class="w-14 h-14 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mr-6 shadow-lg">
@@ -1127,6 +1135,7 @@ import * as L from 'leaflet'
               </button>
             </div>
           </div>
+          </div> <!-- End History Content -->
         </div>
 
         <!-- Statistics Tab -->
@@ -1763,6 +1772,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   userStats: any = null
   loadingStats = false
 
+  // History loading
+  loadingHistory = false
+
   // Map functionality
   private map: L.Map | null = null
   private mapInitialized = false
@@ -1928,6 +1940,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           this.toastr.success("Career guidance generated successfully!")
           this.loadGuidanceHistory() // Refresh history
 
+          // Scroll to top to show results
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+
           // Initialize map for the job market insights
           setTimeout(() => {
             this.initializeMap()
@@ -1993,6 +2008,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   // History methods
   async loadFullHistory(): Promise<void> {
+    this.loadingHistory = true
     try {
       const token = this.authService.getToken()
       const headers = new HttpHeaders({
@@ -2008,6 +2024,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     } catch (error) {
       console.error("Failed to load full guidance history:", error)
       this.toastr.error("Failed to load guidance history")
+    } finally {
+      this.loadingHistory = false
     }
   }
 
@@ -2028,6 +2046,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   viewHistorySession(session: any): void {
+    // Scroll to top before navigation
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+
     // Navigate to the detailed view page with history route
     this.router.navigate(["/ai-career-navigator/career-guidance/history", session.id || session._id])
   }
@@ -2403,9 +2424,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.router.navigate(["/ai-career-navigator/dashboard"])
         break
       case "history":
+        this.loadFullHistory() // Trigger loading when navigating to history
         this.router.navigate(["/ai-career-navigator/history"])
         break
       case "stats":
+        this.loadUserStats() // Keep existing stats loading
         this.router.navigate(["/ai-career-navigator/statistics"])
         break
     }
@@ -2570,6 +2593,5 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   logout(): void {
     this.authService.logout()
-    this.toastr.success("Logged out successfully")
   }
 }

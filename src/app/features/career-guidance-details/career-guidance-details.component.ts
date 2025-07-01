@@ -282,7 +282,7 @@ import * as L from "leaflet"
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
                   </svg>
                 </div>
-                🎯 Career Suggestions
+                 Career Suggestions
               </h3>
               
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -343,7 +343,7 @@ import * as L from "leaflet"
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
                   </svg>
                 </div>
-                🗺️ Learning Roadmap
+                 Learning Roadmap
                 <span class="ml-4 text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded-full font-medium">
                   {{ (guidanceData?.roadmap || []).length }} Steps
                 </span>
@@ -440,7 +440,7 @@ import * as L from "leaflet"
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                     </svg>
                   </div>
-                  📚 Recommended Courses
+                   Recommended Courses
                 </h3>
 
                 <div class="space-y-4">
@@ -500,7 +500,7 @@ import * as L from "leaflet"
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                     </svg>
                   </div>
-                  🚀 Skills to Develop
+                   Skills to Develop
                 </h3>
                 <div class="grid grid-cols-1 gap-4">
                   <div *ngFor="let skill of (guidanceData?.skillsToTrack || guidanceData?.skills_to_track || []); let i = index"
@@ -536,7 +536,7 @@ import * as L from "leaflet"
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
                   </svg>
                 </div>
-                💡 Project Ideas
+                 Project Ideas
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div *ngFor="let project of (guidanceData?.projectIdeas || guidanceData?.project_ideas || []); let i = index"
@@ -573,7 +573,7 @@ import * as L from "leaflet"
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                   </svg>
                 </div>
-                📊 Job Market Insights
+                 Job Market Insights
               </h3>
 
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -1078,6 +1078,10 @@ export class CareerGuidanceDetailsComponent implements OnInit, AfterViewInit {
       if (response && response.status === "success") {
         this.guidanceData = response.guidance
         console.log("Guidance data loaded:", this.guidanceData)
+
+        // Scroll to top when guidance details are loaded
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+
         // Initialize map after data is loaded
         setTimeout(() => {
           this.initializeMap("world-map-history")
