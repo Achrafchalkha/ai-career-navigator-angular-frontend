@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit, HostListener } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { FormBuilder, type FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
-import { Router, RouterModule } from "@angular/router"
+import { Router, RouterModule, NavigationEnd } from "@angular/router"
 import { AuthService } from "../../../core/services/auth.service"
 import { ToastrService } from 'ngx-toastr'
+import { Location } from '@angular/common'
 
 @Component({
   selector: "app-login",
@@ -98,8 +99,8 @@ import { ToastrService } from 'ngx-toastr'
             <!-- Register Link -->
             <div class="text-center">
               <p class="text-gray-600 mb-3">Don't have an account?</p>
-              <a 
-                routerLink="/ai-career-navigator/register" 
+              <a
+                routerLink="/ai-career-navigator/register"
                 class="inline-flex items-center justify-center w-full py-3 px-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-blue-500 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/20"
               >
                 Create Your Account
@@ -144,7 +145,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private location: Location
   ) {
     this.loginForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
@@ -153,12 +155,46 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('🔐 Login Component Initialized');
+    console.log('📍 Current URL:', this.router.url);
+    console.log('🌐 Browser URL:', window.location.href);
+    console.log('📚 History Length:', window.history.length);
+
+    // Debug authentication state
+    console.log('🔍 Checking authentication state...');
+    console.log('🔑 Token in localStorage:', localStorage.getItem('auth_token'));
+    console.log('👤 User in localStorage:', localStorage.getItem('current_user'));
+    console.log('✅ isAuthenticated():', this.authService.isAuthenticated());
+
     // Check if user is already authenticated
     if (this.authService.isAuthenticated()) {
-      // User is already logged in, redirect to dashboard
-      this.router.navigate(['/ai-career-navigator/dashboard']);
-      return;
+      console.log('⚠️ User already authenticated, but staying on login page for debugging');
+      console.log('💡 If you want to go to dashboard, please login again or clear browser storage');
+      // Comment out the automatic redirect for debugging
+      // this.router.navigate(['/ai-career-navigator/dashboard']);
+      // return;
     }
+
+    console.log('🔓 Showing login form');
+  }
+
+  // Handle browser back button
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: any) {
+    console.log('🔙 PopState detected in Login Component');
+    console.log('📍 Current URL:', this.router.url);
+    console.log('🌐 Browser URL:', window.location.href);
+    console.log('📚 History Length:', window.history.length);
+    console.log('📦 Event State:', event.state);
+
+    // Navigate to landing page when back button is pressed
+    console.log('🏠 Navigating to landing page...');
+    this.router.navigate(['/ai-career-navigator']);
+  }
+
+  // Method to go back to landing page
+  goToLanding() {
+    this.router.navigate(['/ai-career-navigator']);
   }
 
   onSubmit(): void {

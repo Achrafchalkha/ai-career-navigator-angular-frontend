@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit, HostListener } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { FormBuilder, type FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
-import { Router, RouterModule } from "@angular/router"
+import { Router, RouterModule, NavigationEnd } from "@angular/router"
 import { AuthService } from "../../../core/services/auth.service"
 import { ToastrService } from 'ngx-toastr'
+import { Location } from '@angular/common'
 
 @Component({
   selector: "app-register",
@@ -143,8 +144,8 @@ import { ToastrService } from 'ngx-toastr'
             <!-- Login Link -->
             <div class="text-center">
               <p class="text-gray-600 mb-3">Welcome back!</p>
-              <a 
-                routerLink="/ai-career-navigator/login" 
+              <a
+                routerLink="/ai-career-navigator/login"
                 class="inline-flex items-center justify-center w-full py-3 px-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-blue-500 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/20"
               >
                 Sign In to Your Account
@@ -189,7 +190,8 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private location: Location
   ) {
     this.registerForm = this.fb.group({
       firstName: ["", [Validators.required, Validators.minLength(2)]],
@@ -201,12 +203,40 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('📝 Register Component Initialized');
+    console.log('📍 Current URL:', this.router.url);
+    console.log('🌐 Browser URL:', window.location.href);
+    console.log('📚 History Length:', window.history.length);
+
+    // Debug authentication state
+    console.log('🔍 Checking authentication state...');
+    console.log('🔑 Token in localStorage:', localStorage.getItem('auth_token'));
+    console.log('👤 User in localStorage:', localStorage.getItem('current_user'));
+    console.log('✅ isAuthenticated():', this.authService.isAuthenticated());
+
     // Check if user is already authenticated
     if (this.authService.isAuthenticated()) {
-      // User is already logged in, redirect to dashboard
-      this.router.navigate(['/ai-career-navigator/dashboard']);
-      return;
+      console.log('⚠️ User already authenticated, but staying on register page for debugging');
+      console.log('💡 If you want to go to dashboard, please register again or clear browser storage');
+      // Comment out the automatic redirect for debugging
+      // this.router.navigate(['/ai-career-navigator/dashboard']);
+      // return;
     }
+
+    console.log('🔓 Showing register form');
+  }
+
+  // Handle browser back button
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: any) {
+    console.log('🔙 Back button pressed from register page');
+    // Navigate to landing page when back button is pressed
+    this.router.navigate(['/ai-career-navigator']);
+  }
+
+  // Method to go back to landing page
+  goToLanding() {
+    this.router.navigate(['/ai-career-navigator']);
   }
 
   onSubmit(): void {

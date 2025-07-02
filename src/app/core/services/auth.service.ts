@@ -90,9 +90,9 @@ export class AuthService {
     this.isAuthenticatedSubject.next(false);
     console.log('✅ Auth state updated');
 
-    // Force page reload to landing page to avoid any routing conflicts
+    // Navigate to landing page using Angular router
     console.log('🚀 Redirecting to landing page...');
-    window.location.replace('/ai-career-navigator');
+    this.router.navigate(['/ai-career-navigator']);
   }
 
   getToken(): string | null {
