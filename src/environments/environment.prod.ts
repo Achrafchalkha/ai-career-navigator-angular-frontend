@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8036/api'
+  apiUrl: 'https://ai-career-navigator-sj72.onrender.com/api'
 };
