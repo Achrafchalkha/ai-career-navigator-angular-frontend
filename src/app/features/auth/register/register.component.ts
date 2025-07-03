@@ -240,23 +240,64 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log('🚀 Registration form submitted');
+    console.log('📝 Form valid:', this.registerForm.valid);
+    console.log('📋 Form values:', this.registerForm.value);
+    console.log('🌐 API URL being used:', this.authService.getApiUrl());
+
     if (this.registerForm.valid) {
       this.isLoading = true
+      console.log('⏳ Starting registration request...');
 
       this.authService.register(this.registerForm.value).subscribe({
-        next: () => {
+        next: (response) => {
+          console.log('✅ Registration successful:', response);
+          this.toastr.success('Account created successfully!');
           this.router.navigate(["/ai-career-navigator/dashboard"])
         },
         error: (error) => {
-          console.error("Registration error:", error)
-          const errorMessage = error.message || "Registration failed"
-          this.toastr.error(errorMessage)
+          console.error("❌ Registration error:", error);
+          console.error("❌ Error details:", {
+            status: error.status,
+            statusText: error.statusText,
+            message: error.message,
+            error: error.error
+          });
+
+          let errorMessage = "Registration failed";
+          if (error.error?.error) {
+            errorMessage = error.error.error;
+          } else if (error.message) {
+            errorMessage = error.message;
+          } else if (error.status === 0) {
+            errorMessage = "Cannot connect to server. Please check your internet connection.";
+          } else if (error.status === 400) {
+            errorMessage = "Invalid registration data. Please check your inputs.";
+          } else if (error.status === 409) {
+            errorMessage = "An account with this email already exists.";
+          }
+
+          this.toastr.error(errorMessage);
           this.isLoading = false
         }
       })
     } else {
+      console.log('❌ Form is invalid');
+      console.log('📋 Form errors:', this.getFormErrors());
       // Mark all fields as touched to show validation errors
       this.registerForm.markAllAsTouched()
     }
+  }
+
+  // Helper method to get form errors for debugging
+  getFormErrors() {
+    const errors: any = {};
+    Object.keys(this.registerForm.controls).forEach(key => {
+      const control = this.registerForm.get(key);
+      if (control && control.errors) {
+        errors[key] = control.errors;
+      }
+    });
+    return errors;
   }
 }

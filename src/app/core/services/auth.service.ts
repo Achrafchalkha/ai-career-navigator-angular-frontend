@@ -107,6 +107,10 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
+  getApiUrl(): string {
+    return this.API_URL;
+  }
+
   private hasValidToken(): boolean {
     const token = this.getToken();
     return token ? this.isTokenValid(token) : false;
