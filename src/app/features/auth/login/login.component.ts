@@ -37,7 +37,7 @@ import { Location } from '@angular/common'
                 class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white/80 backdrop-blur-sm transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white hover:border-blue-300 outline-none"
                 placeholder="Enter your email address"
               />
-              <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)" class="mt-2 text-sm text-red-600">
+              <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="mt-2 text-sm text-red-600">
                 <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</span>
                 <span *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address</span>
               </div>
@@ -52,7 +52,7 @@ import { Location } from '@angular/common'
                 class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white/80 backdrop-blur-sm transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white hover:border-blue-300 outline-none"
                 placeholder="Enter your password"
               />
-              <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="mt-2 text-sm text-red-600">
+              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="mt-2 text-sm text-red-600">
                 <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</span>
                 <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long</span>
               </div>

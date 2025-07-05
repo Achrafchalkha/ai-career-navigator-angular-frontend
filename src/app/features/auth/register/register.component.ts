@@ -38,7 +38,7 @@ import { Location } from '@angular/common'
                   class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white/80 backdrop-blur-sm transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white hover:border-blue-300 outline-none"
                   placeholder="First name"
                 />
-                <div *ngIf="registerForm.get('firstName')?.invalid && (registerForm.get('firstName')?.dirty || registerForm.get('firstName')?.touched)" class="mt-2 text-sm text-red-600">
+                <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched" class="mt-2 text-sm text-red-600">
                   <span *ngIf="registerForm.get('firstName')?.errors?.['required']">First name is required</span>
                   <span *ngIf="registerForm.get('firstName')?.errors?.['minlength']">First name must be at least 2 characters</span>
                 </div>
@@ -51,7 +51,7 @@ import { Location } from '@angular/common'
                   class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white/80 backdrop-blur-sm transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white hover:border-blue-300 outline-none"
                   placeholder="Last name"
                 />
-                <div *ngIf="registerForm.get('lastName')?.invalid && (registerForm.get('lastName')?.dirty || registerForm.get('lastName')?.touched)" class="mt-2 text-sm text-red-600">
+                <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched" class="mt-2 text-sm text-red-600">
                   <span *ngIf="registerForm.get('lastName')?.errors?.['required']">Last name is required</span>
                   <span *ngIf="registerForm.get('lastName')?.errors?.['minlength']">Last name must be at least 2 characters</span>
                 </div>
@@ -67,7 +67,7 @@ import { Location } from '@angular/common'
                 class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white/80 backdrop-blur-sm transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white hover:border-blue-300 outline-none"
                 placeholder="Enter your email address"
               />
-              <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)" class="mt-2 text-sm text-red-600">
+              <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="mt-2 text-sm text-red-600">
                 <span *ngIf="registerForm.get('email')?.errors?.['required']">Email is required</span>
                 <span *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid email address</span>
               </div>
@@ -82,7 +82,7 @@ import { Location } from '@angular/common'
                 class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white/80 backdrop-blur-sm transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white hover:border-blue-300 outline-none"
                 placeholder="Create a strong password"
               />
-              <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)" class="mt-2 text-sm text-red-600">
+              <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="mt-2 text-sm text-red-600">
                 <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required</span>
                 <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long</span>
               </div>
@@ -106,7 +106,7 @@ import { Location } from '@angular/common'
                 <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">Privacy Policy</a>
               </label>
             </div>
-            <div *ngIf="registerForm.get('agreeToTerms')?.invalid && (registerForm.get('agreeToTerms')?.dirty || registerForm.get('agreeToTerms')?.touched)" class="text-sm text-red-600">
+            <div *ngIf="registerForm.get('agreeToTerms')?.invalid && registerForm.get('agreeToTerms')?.touched" class="text-sm text-red-600">
               You must agree to the terms and conditions
             </div>
 
