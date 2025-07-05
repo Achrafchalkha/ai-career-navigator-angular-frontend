@@ -44,87 +44,63 @@ import * as L from "leaflet"
     <div *ngIf="!isLoading" class="min-h-screen">
       <!-- Enhanced Navigation -->
       <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-lg">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between h-20">
-            <div class="flex items-center space-x-6">
-              <!-- Logo with Animation -->
-              <div class="flex items-center group">
-                <h1 class="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                  AI Career Navigator
-                </h1>
-              </div>
-              <!-- Navigation Links -->
-              <div class="hidden md:flex items-center space-x-2">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <!-- Left: Logo -->
+            <div class="flex items-center">
+              <h1 class="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                AI Career Navigator
+              </h1>
+            </div>
+
+            <!-- Middle: Navigation Links -->
+            <div class="hidden md:flex items-center space-x-2">
                 <button
                   (click)="navigateToTab('dashboard')"
-                  [class]="getTabClasses('dashboard')"
-                  class="relative px-6 py-3 text-sm font-semibold rounded-xl transition-all duration-300 transform hover:scale-105"
+                  [class]="activeTab === 'dashboard' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'"
+                  class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
                 >
-                  <div class="flex items-center space-x-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                    </svg>
-                    <span>Dashboard</span>
-                  </div>
-                  <div *ngIf="activeTab === 'dashboard'" class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl -z-10"></div>
+                  Dashboard
                 </button>
                 <button
                   (click)="navigateToTab('history')"
-                  [class]="getTabClasses('history')"
-                  class="relative px-6 py-3 text-sm font-semibold rounded-xl transition-all duration-300 transform hover:scale-105"
+                  [class]="activeTab === 'history' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'"
+                  class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 relative"
                 >
-                  <div class="flex items-center space-x-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <span>History</span>
-                    <span *ngIf="guidanceHistory.length > 0" class="bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
-                      {{ guidanceHistory.length }}
-                    </span>
-                  </div>
-                  <div *ngIf="activeTab === 'history'" class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl -z-10"></div>
+                  History
+                  <span *ngIf="guidanceHistory.length > 0" class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {{ guidanceHistory.length }}
+                  </span>
                 </button>
                 <button
                   (click)="navigateToTab('stats')"
-                  [class]="getTabClasses('stats')"
-                  class="relative px-6 py-3 text-sm font-semibold rounded-xl transition-all duration-300 transform hover:scale-105"
+                  [class]="activeTab === 'stats' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'"
+                  class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
                 >
-                  <div class="flex items-center space-x-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                    </svg>
-                    <span>Statistics</span>
-                  </div>
-                  <div *ngIf="activeTab === 'stats'" class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl -z-10"></div>
+                  Statistics
                 </button>
-              </div>
             </div>
-            <div class="flex items-center space-x-4">
+            <!-- Right: User Info and Logout -->
+            <div class="flex items-center space-x-3">
               <!-- Mobile Menu Button -->
               <button
                 (click)="showMobileMenu = !showMobileMenu"
-                class="md:hidden p-3 rounded-xl text-gray-600 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 transform hover:scale-110"
+                class="md:hidden p-2 text-gray-600 hover:text-blue-600 transition-colors"
               >
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
               </button>
-              <!-- User Info Card -->
-              <div class="hidden sm:block bg-white/60 backdrop-blur-sm rounded-2xl px-3 py-2 border border-white/20 shadow-lg">
-                <div class="text-sm font-semibold text-gray-900">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</div>
+              <!-- User Name -->
+              <div class="hidden sm:block text-sm font-medium text-gray-700">
+                {{ currentUser?.firstName }} {{ currentUser?.lastName }}
               </div>
               <!-- Logout Button -->
               <button
                 (click)="logout()"
-                class="group relative px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+                class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200"
               >
-                <div class="flex items-center space-x-2 relative z-10">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                  </svg>
-                  <span class="hidden sm:inline">Logout</span>
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                Logout
               </button>
             </div>
           </div>
@@ -750,7 +726,6 @@ import * as L from "leaflet"
           </button>
         </div>
       </div>
-    </div>
 
     <!-- Footer -->
     <footer class="bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white py-20 relative overflow-hidden">
