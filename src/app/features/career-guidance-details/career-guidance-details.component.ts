@@ -45,43 +45,44 @@ import * as L from "leaflet"
       <!-- Enhanced Navigation -->
       <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-16">
+          <div class="flex items-center h-16">
             <!-- Left: Logo -->
-            <div class="flex items-center">
+            <div class="flex items-center flex-1">
               <h1 class="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 AI Career Navigator
               </h1>
             </div>
 
-            <!-- Middle: Navigation Links -->
-            <div class="hidden md:flex items-center space-x-2">
-                <button
-                  (click)="navigateToTab('dashboard')"
-                  [class]="activeTab === 'dashboard' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'"
-                  class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
-                >
-                  Dashboard
-                </button>
-                <button
-                  (click)="navigateToTab('history')"
-                  [class]="activeTab === 'history' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'"
-                  class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 relative"
-                >
-                  History
-                  <span *ngIf="guidanceHistory.length > 0" class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                    {{ guidanceHistory.length }}
-                  </span>
-                </button>
-                <button
-                  (click)="navigateToTab('stats')"
-                  [class]="activeTab === 'stats' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'"
-                  class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
-                >
-                  Statistics
-                </button>
+            <!-- Middle: Navigation Links (Centered) -->
+            <div class="hidden md:flex items-center space-x-2 flex-1 justify-center">
+              <button
+                (click)="navigateToTab('dashboard')"
+                [class]="activeTab === 'dashboard' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'"
+                class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
+              >
+                Dashboard
+              </button>
+              <button
+                (click)="navigateToTab('history')"
+                [class]="activeTab === 'history' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'"
+                class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 relative"
+              >
+                History
+                <span *ngIf="guidanceHistory.length > 0" class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {{ guidanceHistory.length }}
+                </span>
+              </button>
+              <button
+                (click)="navigateToTab('stats')"
+                [class]="activeTab === 'stats' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'"
+                class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
+              >
+                Statistics
+              </button>
             </div>
+
             <!-- Right: User Info and Logout -->
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-3 flex-1 justify-end">
               <!-- Mobile Menu Button -->
               <button
                 (click)="showMobileMenu = !showMobileMenu"
