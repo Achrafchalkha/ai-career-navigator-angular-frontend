@@ -282,21 +282,6 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
               Sign In
             </button>
           </div>
-
-          <!-- Enhanced Stats Preview -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto" [@staggerCards]="statsVisible">
-            <div *ngFor="let stat of stats; let i = index"
-                 class="group text-center bg-white/90 backdrop-blur-xl rounded-3xl p-8 border border-gray-200/60 shadow-xl hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-110 relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="relative z-10">
-                <div class="text-4xl md:text-5xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-3 group-hover:scale-125 transition-transform duration-500">
-                  {{stat.value}}
-                </div>
-                <div class="text-base md:text-lg text-gray-600 font-semibold group-hover:text-gray-800 transition-colors duration-300">{{stat.label}}</div>
-              </div>
-              <div class="absolute -inset-1 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-indigo-500/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -913,12 +898,7 @@ export class LandingComponent implements OnInit, OnDestroy {
   // Particle system
   particles: Array<{ x: number; y: number; delay: number }> = []
 
-  stats = [
-    { value: "50K+", label: "Professionals Guided" },
-    { value: "98%", label: "Success Rate" },
-    { value: "1000+", label: "Career Paths" },
-    { value: "24/7", label: "AI Support" },
-  ]
+
 
   features = [
     {
