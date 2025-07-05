@@ -25,12 +25,12 @@ import * as L from 'leaflet'
 
     <!-- Enhanced Navigation -->
     <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-lg">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
-          <div class="flex items-center space-x-8">
+          <div class="flex items-center space-x-6">
             <!-- Logo with Animation -->
             <div class="flex items-center group">
-              <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              <h1 class="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 AI Career Navigator
               </h1>
             </div>
@@ -91,9 +91,8 @@ import * as L from 'leaflet'
               </svg>
             </button>
             <!-- User Info Card -->
-            <div class="hidden sm:block bg-white/60 backdrop-blur-sm rounded-2xl px-4 py-2 border border-white/20 shadow-lg">
+            <div class="hidden sm:block bg-white/60 backdrop-blur-sm rounded-2xl px-3 py-2 border border-white/20 shadow-lg">
               <div class="text-sm font-semibold text-gray-900">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</div>
-              <div class="text-xs text-gray-600">{{ currentUser?.email }}</div>
             </div>
             <!-- Logout Button -->
             <button
