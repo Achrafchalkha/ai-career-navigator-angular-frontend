@@ -20,14 +20,14 @@ import { Location } from '@angular/common'
         <!-- Content -->
         <div class="relative z-10">
           <!-- Header with brand -->
-          <div class="text-center mb-8">
+          <div class="text-center mb-6">
             <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">
               Create Account
             </h2>
             <p class="text-gray-600">Join AI Career Navigator and start your journey</p>
           </div>
 
-          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-4">
             <!-- Name Fields -->
             <div class="grid grid-cols-2 gap-4">
               <div>
@@ -127,7 +127,7 @@ import { Location } from '@angular/common'
             </button>
 
             <!-- Divider -->
-            <div class="relative my-6">
+            <div class="relative my-4">
               <div class="absolute inset-0 flex items-center">
                 <div class="w-full border-t border-gray-200"></div>
               </div>
@@ -138,7 +138,6 @@ import { Location } from '@angular/common'
 
             <!-- Login Link -->
             <div class="text-center">
-              <p class="text-gray-600 mb-3">Welcome back!</p>
               <a
                 routerLink="/ai-career-navigator/login"
                 class="inline-flex items-center justify-center w-full py-3 px-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-blue-500 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/20"
