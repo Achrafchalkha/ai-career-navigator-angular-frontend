@@ -549,10 +549,10 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
                   <img [src]="testimonial.image" 
                        [alt]="testimonial.name"
                        class="w-16 h-16 rounded-full border-4 border-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+
                 </div>
                 <div>
-                  <h4 class="text-gray-900 font-bold text-lg group-hover:text-blue-600 transition-colors duration-300">{{testimonial.name}}</h4>
+                  <h4 class="text-gray-900 font-bold text-lg">{{testimonial.name}}</h4>
                   <p class="text-blue-600 font-medium">{{testimonial.role}}</p>
                 </div>
               </div>
@@ -592,10 +592,10 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
                   <img [src]="testimonial.image" 
                        [alt]="testimonial.name"
                        class="w-16 h-16 rounded-full border-4 border-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+
                 </div>
                 <div>
-                  <h4 class="text-gray-900 font-bold text-lg group-hover:text-blue-600 transition-colors duration-300">{{testimonial.name}}</h4>
+                  <h4 class="text-gray-900 font-bold text-lg">{{testimonial.name}}</h4>
                   <p class="text-blue-600 font-medium">{{testimonial.role}}</p>
                 </div>
               </div>
@@ -939,17 +939,17 @@ export class LandingComponent implements OnInit, OnDestroy {
 
   testimonials = [
     {
-      name: "Michael Hall",
+      name: "Sacha Baron",
       role: "Software Engineer at Google",
-      image: "assets/features/profiles pictures/dexter.jpg",
+      image: "assets/features/profiles pictures/Sacha.jpg", 
       content:
         "AI Career Navigator helped me transition from marketing to tech. The personalized roadmap was incredibly detailed and accurate!",
       rating: 5,
     },
     {
-      name: "Jake Gyllenhaal",
+      name: "Fogell",
       role: "Data Scientist at Microsoft",
-      image: "assets/features/profiles pictures/jake.jpg",
+      image: "assets/features/profiles pictures/fogell.jpg",
       content:
         "The AI matching was spot-on. I discovered career paths I never knew existed and landed my dream job in 6 months.",
       rating: 5,
