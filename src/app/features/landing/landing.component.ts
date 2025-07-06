@@ -939,41 +939,41 @@ export class LandingComponent implements OnInit, OnDestroy {
 
   testimonials = [
     {
-      name: "Sarah Chen",
+      name: "Michael Hall",
       role: "Software Engineer at Google",
-      image: "/placeholder.svg?height=60&width=60",
+      image: "assets/features/profiles pictures/dexter.jpg",
       content:
         "AI Career Navigator helped me transition from marketing to tech. The personalized roadmap was incredibly detailed and accurate!",
       rating: 5,
     },
     {
-      name: "Marcus Johnson",
+      name: "Jake Gyllenhaal",
       role: "Data Scientist at Microsoft",
-      image: "/placeholder.svg?height=60&width=60",
+      image: "assets/features/profiles pictures/jake.jpg",
       content:
         "The AI matching was spot-on. I discovered career paths I never knew existed and landed my dream job in 6 months.",
       rating: 5,
     },
     {
-      name: "Elena Rodriguez",
+      name: "Gustaf Caspar",
       role: "UX Designer at Airbnb",
-      image: "/placeholder.svg?height=60&width=60",
+      image: "assets/features/profiles pictures/flooki.jpg",
       content:
         "The learning roadmap feature is game-changing. It saved me months of research and guided me step by step.",
       rating: 5,
     },
     {
-      name: "David Kim",
+      name: "Peter Dinklage",
       role: "Product Manager at Tesla",
-      image: "/placeholder.svg?height=60&width=60",
+      image: "assets/features/profiles pictures/peter.jpg",
       content:
         "The AI insights were incredibly accurate. I found my perfect role and increased my salary by 40% in just 4 months!",
       rating: 5,
     },
     {
-      name: "Lisa Wang",
+      name: "Jorge Garcia",
       role: "Data Analyst at Netflix",
-      image: "/placeholder.svg?height=60&width=60",
+      image: "assets/features/profiles pictures/lghlid.jpg",
       content:
         "The platform's career guidance is unmatched. It helped me pivot from finance to tech seamlessly with a clear roadmap.",
       rating: 5,
