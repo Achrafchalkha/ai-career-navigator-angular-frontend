@@ -92,7 +92,10 @@ export class AuthService {
 
     // Navigate to landing page using Angular router
     console.log('🚀 Redirecting to landing page...');
-    this.router.navigate(['/ai-career-navigator']);
+    this.router.navigate(['/ai-career-navigator']).then(() => {
+      // Scroll to top after navigation
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
   getToken(): string | null {
