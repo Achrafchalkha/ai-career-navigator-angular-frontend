@@ -24,7 +24,7 @@ import * as L from 'leaflet'
     </div>
 
     <!-- Enhanced Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-lg">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-lg">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center h-16">
           <!-- Left: Logo -->
@@ -150,7 +150,7 @@ import * as L from 'leaflet'
     </nav>
 
     <!-- Main Content -->
-    <div class="min-h-screen">
+    <div class="min-h-screen pt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Dashboard Tab -->
         <div *ngIf="activeTab === 'dashboard'" class="animate-fade-in">
@@ -2421,6 +2421,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   // Navigation methods
   navigateToTab(tab: "dashboard" | "history" | "stats"): void {
     this.activeTab = tab
+    // Scroll to top when navigating
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+
     switch (tab) {
       case "dashboard":
         this.router.navigate(["/ai-career-navigator/dashboard"])

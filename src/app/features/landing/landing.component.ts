@@ -259,7 +259,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger, 
           </p>
 
           <!-- Enhanced CTA Buttons -->
-          <div class="hero-buttons flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
+          <div class="hero-buttons flex flex-col sm:flex-row gap-8 justify-center items-center mb-24">
             <button (click)="navigateToRegister()"
                class="group bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 relative overflow-hidden">
               <span class="flex items-center relative z-10">

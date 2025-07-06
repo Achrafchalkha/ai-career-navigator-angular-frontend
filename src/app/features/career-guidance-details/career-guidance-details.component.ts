@@ -41,9 +41,9 @@ import * as L from "leaflet"
     </div>
 
     <!-- Main Content -->
-    <div *ngIf="!isLoading" class="min-h-screen">
+    <div *ngIf="!isLoading" class="min-h-screen pt-20">
       <!-- Enhanced Navigation -->
-      <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-lg">
+      <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex items-center h-16">
             <!-- Left: Logo -->
@@ -1154,6 +1154,9 @@ export class CareerGuidanceDetailsComponent implements OnInit, AfterViewInit {
 
   // Navigation methods
   navigateToTab(tab: "dashboard" | "history" | "stats"): void {
+    // Scroll to top when navigating
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+
     switch (tab) {
       case "dashboard":
         this.router.navigate(["/ai-career-navigator/dashboard"])
@@ -1168,6 +1171,9 @@ export class CareerGuidanceDetailsComponent implements OnInit, AfterViewInit {
   }
 
   goBack(): void {
+    // Scroll to top when navigating back
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+
     // Navigate back to the appropriate tab based on how user accessed this page
     if (this.activeTab === "history") {
       this.router.navigate(["/ai-career-navigator/history"])
